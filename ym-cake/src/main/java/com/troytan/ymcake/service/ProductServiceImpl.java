@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.sgm.ymcake.domain.Product;
-import com.sgm.ymcake.repository.ProductMapper;
+import com.troytan.ymcake.domain.Product;
+import com.troytan.ymcake.repository.ProductMapper;
 import com.troytan.ymcake.vo.ProductVo;
 
 @Service

@@ -2,8 +2,8 @@ package com.troytan.ymcake.vo;
 
 import java.util.List;
 
-import com.sgm.ymcake.domain.ProductPic;
-import com.sgm.ymcake.domain.Size;
+import com.troytan.ymcake.domain.ProductPic;
+import com.troytan.ymcake.domain.Size;
 
 public class ProductVo {
 

@@ -9,15 +9,18 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import com.sgm.ymcake.domain.ProductOrder;
+import com.troytan.ymcake.domain.ProductOrder;
 
 @Controller
 @Path("/order")
 @Consumes("application/json;charset=utf-8")
 @Produces("application/json;charset=utf-8")
 public class OrderController {
+    
+  
 
     /**
      * 新增订单
@@ -30,7 +33,7 @@ public class OrderController {
     @PUT
     @Path("/create")
     public boolean createOrder(List<ProductOrder> productOrders) {
-
+        
         return true;
     }
 

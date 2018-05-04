@@ -13,7 +13,7 @@ import javax.ws.rs.Produces;
 
 import org.springframework.stereotype.Controller;
 
-import com.sgm.ymcake.domain.Addr;
+import com.troytan.ymcake.domain.Addr;
 
 @Controller
 @Path("/addr")
