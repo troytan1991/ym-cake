@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	<classPathEntry
+		location="D:\java\M2\repository\mysql\mysql-connector-java\8.0.11\mysql-connector-java-8.0.11.jar" />
+	<context id="ymcake" defaultModelType="flat" targetRuntime="Mybatis3Simple">
+		<property name="javaFileEncoding" value="UTF-8" />
+		<commentGenerator>
+			<property name="suppressDate" value="true" />
+		</commentGenerator>
+		<jdbcConnection connectionURL="jdbc:mysql://localhost:3306/owcake?useSSL=false"
+			driverClass="com.mysql.cj.jdbc.Driver" password="Pass1234" userId="owcake" />
+		<javaModelGenerator targetPackage="com.sgm.ymcake.domain"
+			targetProject="src/main/java/">
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+		<sqlMapGenerator targetPackage="com.sgm.ymcake.repository"
+			targetProject="src/main/resources/" />
+		<javaClientGenerator targetPackage="com.sgm.ymcake.repository"
+			type="XMLMAPPER" targetProject="src/main/java" />
+		<!-- OLD TABLE IN DOL -->
+		<table tableName="TM_USER" domainObjectName="User">
+			<generatedKey column="USER_ID" sqlStatement="MySql"
+				identity="true" />
+			<columnOverride column="USER_ID" javaType="Long" />
+		</table>
+		<table tableName="TM_AREA" domainObjectName="Area">
+		</table>
+		<table tableName="TT_ADDR" domainObjectName="Addr">
+			<generatedKey column="ADDR_ID" sqlStatement="MySql"
+				identity="true" />
+			<columnOverride column="ADDR_ID" javaType="Long" />
+		</table>
+		<table tableName="TT_COMMENT" domainObjectName="Comment">
+			<generatedKey column="COMMENT_ID" sqlStatement="MySql"
+				identity="true" />
+			<columnOverride column="COMMENT_ID" javaType="Long" />
+		</table>
+		<table tableName="TT_ORDER" domainObjectName="Order">
+			<generatedKey column="ORDER_ID" sqlStatement="MySql"
+				identity="true" />
+			<columnOverride column="ORDER_ID" javaType="Long" />
+		</table>
+		<table tableName="TR_PRODUCT_ORDER" domainObjectName="ProductOrder">
+		</table>
+		<table tableName="TT_PRODUCT" domainObjectName="Product">
+			<generatedKey column="PRODUCT_ID" sqlStatement="MySql"
+				identity="true" />
+			<columnOverride column="PRODUCT_ID" javaType="Long" />
+		</table>
+		<table tableName="TT_PRODUCT_PIC" domainObjectName="ProductPic">
+			<generatedKey column="PRODUCT_PIC_ID" sqlStatement="MySql"
+				identity="true" />
+			<columnOverride column="PRODUCT_PIC_ID" javaType="Long" />
+		</table>
+		<table tableName="TT_SHOPCART" domainObjectName="Shopcart">
+			<generatedKey column="SHOPCART_ID" sqlStatement="MySql"
+				identity="true" />
+			<columnOverride column="SHOPCART_ID" javaType="Long" />
+		</table>
+		<table tableName="TT_SIZE" domainObjectName="Size">
+			<generatedKey column="SIZE_ID" sqlStatement="MySql"
+				identity="true" />
+			<columnOverride column="SIZE_ID" javaType="Long" />
+		</table>
+
+	</context>
+</generatorConfiguration>
