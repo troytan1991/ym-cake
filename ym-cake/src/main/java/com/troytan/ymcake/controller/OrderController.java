@@ -12,8 +12,11 @@ import javax.ws.rs.Produces;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import com.troytan.ymcake.domain.Comment;
 import com.troytan.ymcake.domain.Order;
 import com.troytan.ymcake.domain.ProductOrder;
+import com.troytan.ymcake.dto.CommentDto;
+import com.troytan.ymcake.dto.DeliveryDto;
 import com.troytan.ymcake.service.OrderService;
 
 @Controller
@@ -50,8 +53,8 @@ public class OrderController {
      */
     @POST
     @Path("/pay/{orderId}")
-    public boolean payOrder(@PathParam("orderId") Long orderId) {
-        return orderService.payOrder(orderId);
+    public void payOrder(@PathParam("orderId") Long orderId) {
+        orderService.payOrder(orderId);
     }
 
     /**
@@ -64,22 +67,8 @@ public class OrderController {
      */
     @POST
     @Path("/deliver/{orderId}")
-    public boolean deliverOrder(@PathParam("orderId") Long orderId) {
-        return true;
+    public void deliverOrder(@PathParam("orderId") Long orderId, DeliveryDto deliveryDto) {
+        orderService.deliverOrder(orderId, deliveryDto);
     }
 
-    /**
-     * 评价订单
-     *
-     * @author troytan
-     * @date 2018年5月4日
-     * @param orderId
-     * @return
-     */
-    @PUT
-    @Path("/comment/{orderId}")
-    public boolean commentOrder(@PathParam("orderId") Long orderId) {
-
-        return true;
-    }
 }

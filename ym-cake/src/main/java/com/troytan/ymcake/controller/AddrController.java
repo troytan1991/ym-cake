@@ -11,17 +11,20 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import com.troytan.ymcake.domain.Addr;
+import com.troytan.ymcake.service.AddrService;
 
 @Controller
 @Path("/addr")
 @Consumes("application/json;charset=utf-8")
 @Produces("application/json;charset=utf-8")
 public class AddrController {
-    
 
+    @Autowired
+    private AddrService addrService;
 
     /**
      * 查询当前用户收货地址
@@ -34,7 +37,7 @@ public class AddrController {
     @Path("/addrs")
     public List<Addr> getAddrs() {
 
-        return null;
+        return addrService.getAddrList();
     }
 
     /**
@@ -48,7 +51,7 @@ public class AddrController {
     @PUT
     public Addr createAddr(Addr addr) {
 
-        return null;
+        return addrService.createAddr(addr);
     }
 
     /**
@@ -62,7 +65,7 @@ public class AddrController {
     @POST
     public Addr updateAddr(Addr addr) {
 
-        return null;
+        return addrService.updateAddr(addr);
     }
 
     /**
@@ -77,6 +80,6 @@ public class AddrController {
     @Path("/{addrId}")
     public List<Addr> deleteAddr(@PathParam("addrId") Long addrId) {
 
-        return null;
+        return addrService.deleteAddr(addrId);
     }
 }

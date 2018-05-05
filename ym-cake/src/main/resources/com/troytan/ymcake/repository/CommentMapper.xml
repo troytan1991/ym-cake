@@ -32,7 +32,7 @@
     insert into tt_comment (comment, USER_ID, ORDER_ID, 
       created_on, created_by)
     values (#{comment,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}, 
-      #{createdOn,jdbcType=TIMESTAMP}, #{createdBy,jdbcType=VARCHAR})
+      now(), #{createdBy,jdbcType=VARCHAR})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.troytan.ymcake.domain.Comment">
     <!--
@@ -63,5 +63,12 @@
     -->
     select COMMENT_ID, comment, USER_ID, ORDER_ID, created_on, created_by
     from tt_comment
+  </select>
+  <!-- 获取商品评价 -->
+  <select id="selectByProductId" resultMap="BaseResultMap">
+    select COMMENT_ID, comment, USER_ID, ORDER_ID, created_on, created_by
+    from tt_comment
+    where ORDER_ID in 
+        (select ORDER_ID from tr_product_order where PRODUCT_ID =#{productId, jdbcType=DECIMAL})
   </select>
 </mapper>

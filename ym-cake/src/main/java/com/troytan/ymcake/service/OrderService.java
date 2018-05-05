@@ -6,11 +6,14 @@ import org.springframework.stereotype.Service;
 
 import com.troytan.ymcake.domain.Order;
 import com.troytan.ymcake.domain.ProductOrder;
+import com.troytan.ymcake.dto.DeliveryDto;
 
 @Service
 public interface OrderService {
 
     Order createOrder(List<ProductOrder> productOrders);
 
-    boolean payOrder(Long orderId);
+    void payOrder(Long orderId);
+
+    void deliverOrder(Long orderId, DeliveryDto deliveryDto);
 }

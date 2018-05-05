@@ -43,4 +43,6 @@ public interface AddrMapper {
      * @mbg.generated
      */
     int updateByPrimaryKey(Addr record);
+
+    List<Addr> selectByUserId(Long currentUser);
 }
