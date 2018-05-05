@@ -1,5 +1,6 @@
 package com.troytan.ymcake.domain;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class Order {
@@ -28,7 +29,7 @@ public class Order {
      *
      * @mbg.generated
      */
-    private Float price;
+    private BigDecimal price;
 
     /**
      *
@@ -37,7 +38,7 @@ public class Order {
      *
      * @mbg.generated
      */
-    private Float deliveryFee;
+    private BigDecimal deliveryFee;
 
     /**
      *
@@ -149,7 +150,7 @@ public class Order {
      *
      * @mbg.generated
      */
-    public Float getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
@@ -161,7 +162,7 @@ public class Order {
      *
      * @mbg.generated
      */
-    public void setPrice(Float price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
@@ -173,7 +174,7 @@ public class Order {
      *
      * @mbg.generated
      */
-    public Float getDeliveryFee() {
+    public BigDecimal getDeliveryFee() {
         return deliveryFee;
     }
 
@@ -185,7 +186,7 @@ public class Order {
      *
      * @mbg.generated
      */
-    public void setDeliveryFee(Float deliveryFee) {
+    public void setDeliveryFee(BigDecimal deliveryFee) {
         this.deliveryFee = deliveryFee;
     }
 

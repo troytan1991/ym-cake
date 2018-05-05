@@ -8,8 +8,8 @@
     -->
     <id column="ORDER_ID" jdbcType="INTEGER" property="orderId" />
     <result column="status" jdbcType="SMALLINT" property="status" />
-    <result column="price" jdbcType="REAL" property="price" />
-    <result column="delivery_fee" jdbcType="REAL" property="deliveryFee" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="delivery_fee" jdbcType="DECIMAL" property="deliveryFee" />
     <result column="created_on" jdbcType="TIMESTAMP" property="createdOn" />
     <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
     <result column="updated_on" jdbcType="TIMESTAMP" property="updatedOn" />
@@ -37,7 +37,7 @@
       created_on, created_by, updated_on, 
       updated_by, delivery_no, delivery_company
       )
-    values (#{status,jdbcType=SMALLINT}, #{price,jdbcType=REAL}, #{deliveryFee,jdbcType=REAL}, 
+    values (#{status,jdbcType=SMALLINT}, #{price,jdbcType=DECIMAL}, #{deliveryFee,jdbcType=DECIMAL}, 
       #{createdOn,jdbcType=TIMESTAMP}, #{createdBy,jdbcType=VARCHAR}, #{updatedOn,jdbcType=TIMESTAMP}, 
       #{updatedBy,jdbcType=VARCHAR}, #{deliveryNo,jdbcType=VARCHAR}, #{deliveryCompany,jdbcType=VARCHAR}
       )
@@ -49,8 +49,8 @@
     -->
     update tt_order
     set status = #{status,jdbcType=SMALLINT},
-      price = #{price,jdbcType=REAL},
-      delivery_fee = #{deliveryFee,jdbcType=REAL},
+      price = #{price,jdbcType=DECIMAL},
+      delivery_fee = #{deliveryFee,jdbcType=DECIMAL},
       created_on = #{createdOn,jdbcType=TIMESTAMP},
       created_by = #{createdBy,jdbcType=VARCHAR},
       updated_on = #{updatedOn,jdbcType=TIMESTAMP},
