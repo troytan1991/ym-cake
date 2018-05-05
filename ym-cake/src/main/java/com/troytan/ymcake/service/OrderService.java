@@ -11,4 +11,6 @@ import com.troytan.ymcake.domain.ProductOrder;
 public interface OrderService {
 
     Order createOrder(List<ProductOrder> productOrders);
+
+    boolean payOrder(Long orderId);
 }

@@ -19,7 +19,7 @@ public class Shopcart {
      *
      * @mbg.generated
      */
-    private Integer userId;
+    private Long userId;
 
     /**
      *
@@ -28,7 +28,7 @@ public class Shopcart {
      *
      * @mbg.generated
      */
-    private Integer productId;
+    private Long productId;
 
     /**
      *
@@ -107,7 +107,7 @@ public class Shopcart {
      *
      * @mbg.generated
      */
-    public Integer getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
@@ -119,7 +119,7 @@ public class Shopcart {
      *
      * @mbg.generated
      */
-    public void setUserId(Integer userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
@@ -131,7 +131,7 @@ public class Shopcart {
      *
      * @mbg.generated
      */
-    public Integer getProductId() {
+    public Long getProductId() {
         return productId;
     }
 
@@ -143,7 +143,7 @@ public class Shopcart {
      *
      * @mbg.generated
      */
-    public void setProductId(Integer productId) {
+    public void setProductId(Long productId) {
         this.productId = productId;
     }
 

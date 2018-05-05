@@ -12,15 +12,18 @@ import javax.ws.rs.Produces;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import com.troytan.ymcake.domain.Order;
 import com.troytan.ymcake.domain.ProductOrder;
+import com.troytan.ymcake.service.OrderService;
 
 @Controller
 @Path("/order")
 @Consumes("application/json;charset=utf-8")
 @Produces("application/json;charset=utf-8")
 public class OrderController {
-    
-  
+
+    @Autowired
+    private OrderService orderService;
 
     /**
      * 新增订单
@@ -32,9 +35,9 @@ public class OrderController {
      */
     @PUT
     @Path("/create")
-    public boolean createOrder(List<ProductOrder> productOrders) {
-        
-        return true;
+    public Order createOrder(List<ProductOrder> productOrders) {
+
+        return orderService.createOrder(productOrders);
     }
 
     /**
@@ -48,7 +51,7 @@ public class OrderController {
     @POST
     @Path("/pay/{orderId}")
     public boolean payOrder(@PathParam("orderId") Long orderId) {
-        return true;
+        return orderService.payOrder(orderId);
     }
 
     /**

@@ -34,12 +34,10 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into tt_order (status, price, delivery_fee, 
-      created_on, created_by, updated_on, 
-      updated_by, delivery_no, delivery_company
+      created_on, created_by,delivery_no, delivery_company
       )
     values (#{status,jdbcType=SMALLINT}, #{price,jdbcType=DECIMAL}, #{deliveryFee,jdbcType=DECIMAL}, 
-      #{createdOn,jdbcType=TIMESTAMP}, #{createdBy,jdbcType=VARCHAR}, #{updatedOn,jdbcType=TIMESTAMP}, 
-      #{updatedBy,jdbcType=VARCHAR}, #{deliveryNo,jdbcType=VARCHAR}, #{deliveryCompany,jdbcType=VARCHAR}
+      now(), #{createdBy,jdbcType=VARCHAR},  #{deliveryNo,jdbcType=VARCHAR}, #{deliveryCompany,jdbcType=VARCHAR}
       )
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.troytan.ymcake.domain.Order">
@@ -78,4 +76,10 @@
     updated_by, delivery_no, delivery_company
     from tt_order
   </select>
+  
+  <!-- 更新订单状态 -->
+  <update id="updateStatusById" >
+    update tt_order set STATUS=#{status, jdbcType=SMALLINT}
+    where ORDER_ID =#{orderId, jdbcType=DECIMAL}
+  </update>
 </mapper>

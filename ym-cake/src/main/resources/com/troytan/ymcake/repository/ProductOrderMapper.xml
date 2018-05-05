@@ -59,4 +59,16 @@
     select ORDER_ID, PRODUCT_ID, count, SIZE_ID
     from tr_product_order
   </select>
+  
+  <!-- 批量插入 -->
+  <insert id="insertBatch" parameterType="com.troytan.ymcake.domain.ProductOrder">
+     insert into tr_product_order (ORDER_ID, PRODUCT_ID, count, SIZE_ID) 
+     values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.orderId, jdbcType=DECIMAL},
+            #{item.productId, jdbcType=DECIMAL},
+            #{item.count, jdbcType=SMALLINT},
+            #{item.sizeId, jdbcType=DECIMAL})
+        </foreach>
+  </insert>
 </mapper>

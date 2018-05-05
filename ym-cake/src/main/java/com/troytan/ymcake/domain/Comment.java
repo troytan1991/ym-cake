@@ -28,7 +28,7 @@ public class Comment {
      *
      * @mbg.generated
      */
-    private Integer userId;
+    private Long userId;
 
     /**
      *
@@ -37,7 +37,7 @@ public class Comment {
      *
      * @mbg.generated
      */
-    private Integer orderId;
+    private Long orderId;
 
     /**
      *
@@ -113,7 +113,7 @@ public class Comment {
      *
      * @mbg.generated
      */
-    public Integer getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
@@ -125,7 +125,7 @@ public class Comment {
      *
      * @mbg.generated
      */
-    public void setUserId(Integer userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
@@ -137,7 +137,7 @@ public class Comment {
      *
      * @mbg.generated
      */
-    public Integer getOrderId() {
+    public Long getOrderId() {
         return orderId;
     }
 
@@ -149,7 +149,7 @@ public class Comment {
      *
      * @mbg.generated
      */
-    public void setOrderId(Integer orderId) {
+    public void setOrderId(Long orderId) {
         this.orderId = orderId;
     }
 
