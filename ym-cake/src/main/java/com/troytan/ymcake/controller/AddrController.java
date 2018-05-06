@@ -68,6 +68,13 @@ public class AddrController {
         return addrService.updateAddr(addr);
     }
 
+    @POST
+    @Path("/setDefault/{addrId}")
+    public void setDefault(@PathParam("addrId") Long addrId) {
+        
+        addrService.setDefault(addrId);
+    }
+
     /**
      * 删除地址
      *

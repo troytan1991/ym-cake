@@ -14,4 +14,6 @@ public interface AddrService {
 
     Addr updateAddr(Addr addr);
 
+    void setDefault(Long addrId);
+
 }

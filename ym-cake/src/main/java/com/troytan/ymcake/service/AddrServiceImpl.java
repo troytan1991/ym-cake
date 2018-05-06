@@ -3,6 +3,7 @@ package com.troytan.ymcake.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.troytan.ymcake.domain.Addr;
 import com.troytan.ymcake.repository.AddrMapper;
@@ -38,6 +39,15 @@ public class AddrServiceImpl implements AddrService {
         addr.setUserId(userService.getCurrentUser());
         addrMapper.updateByPrimaryKey(addr);
         return addr;
+    }
+
+    @Override
+    @Transactional
+    public void setDefault(Long addrId) {
+        // 清除默认
+        addrMapper.updateDefault(false);
+        // 重新添加默认
+        addrMapper.updateDefaultById(addrId, true);
     }
 
 }
