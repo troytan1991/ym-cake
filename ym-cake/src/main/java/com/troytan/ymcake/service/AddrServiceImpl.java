@@ -3,11 +3,13 @@ package com.troytan.ymcake.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.troytan.ymcake.domain.Addr;
 import com.troytan.ymcake.repository.AddrMapper;
 
+@Service
 public class AddrServiceImpl implements AddrService {
 
     @Autowired
@@ -45,9 +47,9 @@ public class AddrServiceImpl implements AddrService {
     @Transactional
     public void setDefault(Long addrId) {
         // 清除默认
-        addrMapper.updateDefault(false);
+        addrMapper.updateUndefault();
         // 重新添加默认
-        addrMapper.updateDefaultById(addrId, true);
+        addrMapper.updateDefaultById(addrId);
     }
 
 }

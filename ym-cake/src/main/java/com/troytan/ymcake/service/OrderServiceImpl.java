@@ -7,13 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.troytan.ymcake.domain.Comment;
 import com.troytan.ymcake.domain.DomainConst;
 import com.troytan.ymcake.domain.Order;
 import com.troytan.ymcake.domain.Product;
 import com.troytan.ymcake.domain.ProductOrder;
 import com.troytan.ymcake.dto.DeliveryDto;
-import com.troytan.ymcake.repository.CommentMapper;
 import com.troytan.ymcake.repository.OrderMapper;
 import com.troytan.ymcake.repository.ProductMapper;
 import com.troytan.ymcake.repository.ProductOrderMapper;
@@ -32,8 +30,6 @@ public class OrderServiceImpl implements OrderService {
     private UserService        userService;
     @Autowired
     private ShopcartMapper     shopcartMapper;
-    @Autowired
-    private CommentMapper      commentMapper;
 
     /**
      * 创建订单

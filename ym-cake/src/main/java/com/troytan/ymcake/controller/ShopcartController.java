@@ -1,20 +1,30 @@
 package com.troytan.ymcake.controller;
 
+import java.util.List;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+
+import com.troytan.ymcake.domain.Shopcart;
+import com.troytan.ymcake.service.ShopcartService;
 
 @Controller
 @Path("/shopcart")
 @Consumes("application/json;charset=utf-8")
 @Produces("application/json;charset=utf-8")
 public class ShopcartController {
+
+    @Autowired
+    private ShopcartService shopcartService;
 
     /**
      * 添加到购物车
@@ -26,10 +36,10 @@ public class ShopcartController {
      * @return
      */
     @PUT
-    @Path("/{productId}/{count}")
-    public boolean addToShopcart(@PathParam("productId") Long productId, @PathParam("count") Short count) {
-
-        return true;
+    @Path("/{productId}/{sizeId}/{count}")
+    public int addToShopcart(@PathParam("productId") Long productId, @PathParam("sizeId") Long sizeId,
+                             @PathParam("count") Short count) {
+        return shopcartService.createShopcart(productId, sizeId, count);
     }
 
     /**
@@ -41,10 +51,10 @@ public class ShopcartController {
      * @return
      */
     @POST
-    @Path("/increase/{productId}")
-    public boolean increaseShopcart(@PathParam("productId") Long productId) {
+    @Path("/increase/{productId}/{sizeId}")
+    public void increaseShopcart(@PathParam("productId") Long productId, @PathParam("sizeId") Long sizeId) {
 
-        return true;
+        shopcartService.increaseShopcart(productId, sizeId);
     }
 
     /**
@@ -56,10 +66,10 @@ public class ShopcartController {
      * @return
      */
     @POST
-    @Path("/decrease/{productId}")
-    public boolean decreaseShopcart(@PathParam("productId") Long productId) {
+    @Path("/decrease/{productId}/{sizeId}")
+    public void decreaseShopcart(@PathParam("productId") Long productId, @PathParam("sizeId") Long sizeId) {
 
-        return true;
+        shopcartService.decreaseShopcart(productId, sizeId);
     }
 
     /**
@@ -71,10 +81,35 @@ public class ShopcartController {
      * @return
      */
     @DELETE
-    @Path("/{productId}")
-    public boolean deleteShopcart(@PathParam("productId") Long productId) {
-
-        return true;
+    @Path("/{productId}/{sizeId}")
+    public void deleteShopcart(@PathParam("productId") Long productId, @PathParam("sizeId") Long sizeId) {
+        shopcartService.deleteShopcart(productId, sizeId);
     }
-    
+
+    /**
+     * 获取当前用户购车车详情
+     *
+     * @author troytan
+     * @date 2018年5月7日
+     * @return
+     */
+    @GET
+    @Path("/all")
+    public List<Shopcart> getShopcartList() {
+        return shopcartService.getShopcartList();
+    }
+
+    /**
+     * 获取购物车数量
+     *
+     * @author troytan
+     * @date 2018年5月7日
+     * @return
+     */
+    @GET
+    @Path("/count")
+    public int getShopcartCount() {
+        return shopcartService.getShopcartCount();
+    }
+
 }

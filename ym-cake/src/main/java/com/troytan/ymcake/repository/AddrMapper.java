@@ -3,8 +3,6 @@ package com.troytan.ymcake.repository;
 import com.troytan.ymcake.domain.Addr;
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
-
 public interface AddrMapper {
 
     /**
@@ -44,7 +42,7 @@ public interface AddrMapper {
 
     List<Addr> selectByUserId(Long currentUser);
 
-    void updateDefault(boolean isDefault);
+    void updateUndefault();
 
-    void updateDefaultById(@Param("addrId") Long addrId, @Param("isDefault") boolean isDefault);
+    void updateDefaultById(Long addrId);
 }

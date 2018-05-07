@@ -41,4 +41,5 @@ public interface CommentMapper {
     int updateByPrimaryKey(Comment record);
 
     List<Comment> selectByProductId(Long productId);
+
 }

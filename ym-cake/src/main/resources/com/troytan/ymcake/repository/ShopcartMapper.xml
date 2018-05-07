@@ -36,8 +36,7 @@
       created_on, created_by, updated_on, 
       updated_by, SIZE_ID)
     values (#{userId,jdbcType=INTEGER}, #{productId,jdbcType=INTEGER}, #{count,jdbcType=SMALLINT}, 
-      #{createdOn,jdbcType=TIMESTAMP}, #{createdBy,jdbcType=VARCHAR}, #{updatedOn,jdbcType=TIMESTAMP}, 
-      #{updatedBy,jdbcType=VARCHAR}, #{sizeId,jdbcType=INTEGER})
+      #{createdOn,jdbcType=TIMESTAMP}, #{createdBy,jdbcType=VARCHAR}, #{sizeId,jdbcType=INTEGER})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.troytan.ymcake.domain.Shopcart">
     <!--
@@ -50,7 +49,7 @@
       count = #{count,jdbcType=SMALLINT},
       created_on = #{createdOn,jdbcType=TIMESTAMP},
       created_by = #{createdBy,jdbcType=VARCHAR},
-      updated_on = #{updatedOn,jdbcType=TIMESTAMP},
+      updated_on = now(),
       updated_by = #{updatedBy,jdbcType=VARCHAR},
       SIZE_ID = #{sizeId,jdbcType=INTEGER}
     where SHOPCART_ID = #{shopcartId,jdbcType=INTEGER}
@@ -82,4 +81,39 @@
     and size_id=#{order.sizeId, jdbcType=DECIMAL}
     and user_id=#{userId, jdbcType=DECIMAL}
   </update>
+  <select id="selectByProductAndUser" resultMap="BaseResultMap">
+    select SHOPCART_ID, USER_ID, PRODUCT_ID, count, created_on, created_by, SIZE_ID
+    from tt_shopcart
+    where product_id=#{productId,jdbcType=DECIMAL}
+    and size_id=#{sizeId, jdbcType=DECIMAL}
+    and user_id=#{userId, jdbcType=DECIMAL}
+  </select>
+  <select id="selectCountByUser" resultType="Integer">
+    select count(*) from tt_shopcart
+    where user_id =#{userId, jdbcType=DECIMAL}
+  </select>
+  <update id="addCountByProduct" >
+    update tt_shopcart set count=count+1
+    where product_id=#{productId,jdbcType=DECIMAL}
+    and size_id=#{sizeId, jdbcType=DECIMAL}
+    and user_id=#{userId, jdbcType=DECIMAL}
+  </update>
+  <update id="subCountByProduct" >
+    update tt_shopcart set count=count-1
+    where product_id=#{productId,jdbcType=DECIMAL}
+    and size_id=#{sizeId, jdbcType=DECIMAL}
+    and user_id=#{userId, jdbcType=DECIMAL}
+  </update>
+  <delete id="deleteByProduct">
+    delete from tt_shopcart
+    where product_id=#{productId,jdbcType=DECIMAL}
+    and size_id=#{sizeId, jdbcType=DECIMAL}
+    and user_id=#{userId, jdbcType=DECIMAL}
+  </delete>
+   <select id="selectByUser" resultMap="BaseResultMap">
+    select SHOPCART_ID, USER_ID, PRODUCT_ID, count, created_on, created_by, updated_on, 
+    updated_by, SIZE_ID
+    from tt_shopcart
+    where user_id=#{userId, jdbcType=DECIMAL}
+  </select>
 </mapper>
