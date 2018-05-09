@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import com.troytan.ymcake.domain.Comment;
 import com.troytan.ymcake.dto.CommentDto;
 import com.troytan.ymcake.service.CommentService;
+import com.troytan.ymcake.vo.CommentVo;
 
 @Controller
 @Path("/comment")
@@ -27,7 +28,7 @@ public class CommentController {
 
     @GET
     @Path("/{productId}")
-    public List<Comment> getComments(@PathParam("productId") Long productId) {
+    public List<CommentVo> getComments(@PathParam("productId") Long productId) {
         return commentService.getCommentList(productId);
     }
 

@@ -13,7 +13,7 @@ public class JerseyConfig extends ResourceConfig {
 
     public JerseyConfig(){
 
-        packages("com.troytan.ymcake.controller");
+        packages("com.troytan.ymcake.controller","com.troytan.ymcake.filter");
         register(JacksonJaxbJsonProvider.class);
     }
 }

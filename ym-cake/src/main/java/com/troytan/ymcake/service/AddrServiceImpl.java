@@ -10,6 +10,7 @@ import com.troytan.ymcake.domain.Addr;
 import com.troytan.ymcake.repository.AddrMapper;
 
 @Service
+@Transactional
 public class AddrServiceImpl implements AddrService {
 
     @Autowired
@@ -44,12 +45,17 @@ public class AddrServiceImpl implements AddrService {
     }
 
     @Override
-    @Transactional
     public void setDefault(Long addrId) {
         // 清除默认
         addrMapper.updateUndefault();
         // 重新添加默认
         addrMapper.updateDefaultById(addrId);
+    }
+
+    @Override
+    public Addr getDefaultAddr() {
+
+        return addrMapper.selectDefaultByUserId(userService.getCurrentUser());
     }
 
 }

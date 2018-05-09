@@ -4,10 +4,11 @@ import java.util.List;
 
 import com.troytan.ymcake.domain.Comment;
 import com.troytan.ymcake.dto.CommentDto;
+import com.troytan.ymcake.vo.CommentVo;
 
 public interface CommentService {
 
-    List<Comment> getCommentList(Long productId);
+    List<CommentVo> getCommentList(Long productId);
 
     Comment createComment(CommentDto commentDto);
 

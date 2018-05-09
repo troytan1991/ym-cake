@@ -4,14 +4,17 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.troytan.ymcake.domain.Comment;
 import com.troytan.ymcake.domain.DomainConst;
 import com.troytan.ymcake.dto.CommentDto;
 import com.troytan.ymcake.repository.CommentMapper;
 import com.troytan.ymcake.repository.OrderMapper;
+import com.troytan.ymcake.vo.CommentVo;
 
 @Service
+@Transactional
 public class CommentServiceImpl implements CommentService {
 
     @Autowired
@@ -22,7 +25,7 @@ public class CommentServiceImpl implements CommentService {
     private OrderMapper   orderMapper;
 
     @Override
-    public List<Comment> getCommentList(Long productId) {
+    public List<CommentVo> getCommentList(Long productId) {
         return commentMapper.selectByProductId(productId);
     }
 

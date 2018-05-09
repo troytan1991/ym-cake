@@ -8,6 +8,7 @@ import com.troytan.ymcake.domain.Size;
 public class ProductVo {
 
     private Long             productId;
+    private String           imgUrl;
     private String           title;
     private String           description;
     private String           detailUrl;
@@ -60,6 +61,14 @@ public class ProductVo {
 
     public void setProductPicList(List<ProductPic> productPicList) {
         this.productPicList = productPicList;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 
 }

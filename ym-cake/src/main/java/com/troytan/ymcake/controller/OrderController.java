@@ -3,6 +3,7 @@ package com.troytan.ymcake.controller;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
@@ -13,9 +14,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import com.troytan.ymcake.domain.Order;
-import com.troytan.ymcake.domain.ProductOrder;
 import com.troytan.ymcake.dto.DeliveryDto;
+import com.troytan.ymcake.dto.OrderDto;
 import com.troytan.ymcake.service.OrderService;
+import com.troytan.ymcake.vo.OrderVo;
 
 @Controller
 @Path("/order")
@@ -36,9 +38,9 @@ public class OrderController {
      */
     @PUT
     @Path("/create")
-    public Order createOrder(List<ProductOrder> productOrders) {
+    public Order createOrder(OrderDto orderDto) {
 
-        return orderService.createOrder(productOrders);
+        return orderService.createOrder(orderDto);
     }
 
     /**
@@ -67,6 +69,20 @@ public class OrderController {
     @Path("/deliver/{orderId}")
     public void deliverOrder(@PathParam("orderId") Long orderId, DeliveryDto deliveryDto) {
         orderService.deliverOrder(orderId, deliveryDto);
+    }
+
+    /**
+     * 根据状体获取订单,-1表示全部
+     *
+     * @author troytan
+     * @date 2018年5月8日
+     * @param status
+     * @return
+     */
+    @GET
+    @Path("/{status}")
+    public List<OrderVo> getOrders(@PathParam("status") Short status) {
+        return orderService.getOrderList(status);
     }
 
 }

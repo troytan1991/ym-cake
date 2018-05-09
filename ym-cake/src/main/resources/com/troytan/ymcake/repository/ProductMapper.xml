@@ -84,6 +84,7 @@
 		<result column="name" jdbcType="VARCHAR" property="title" />
 		<result column="description" jdbcType="VARCHAR" property="description" />
 		<result column="detail_url" jdbcType="VARCHAR" property="detailUrl" />
+		<result column="product_img" jdbcType="VARCHAR" property="imgUrl" />
 		<collection ofType="com.troytan.ymcake.domain.ProductPic" property="productPicList">
 			<id column="PRODUCT_PIC_ID" jdbcType="INTEGER" property="productPicId" />
 			<result column="img_url" jdbcType="VARCHAR" property="imgUrl" />
@@ -96,8 +97,8 @@
 	</resultMap>
 	<!-- 获取单个product详情 -->
 	<select id="selectVoByPrimaryKey" parameterType="Long" resultMap="ProductVoResultMap">
-		select product.PRODUCT_ID, product.name,
-		product.description,product.detail_url, pic.PRODUCT_PIC_ID,
+		select product.PRODUCT_ID, product.name, product.description,
+		product.detail_url,product.img_url as product_img, pic.PRODUCT_PIC_ID,
 		pic.img_url ,size.SIZE_ID,size.description as size_desc, size.price
 		from tt_product product
 		left join tt_size size on size.PRODUCT_ID = product.PRODUCT_ID

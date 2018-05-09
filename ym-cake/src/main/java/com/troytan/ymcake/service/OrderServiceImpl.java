@@ -7,17 +7,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.troytan.ymcake.domain.Delivery;
 import com.troytan.ymcake.domain.DomainConst;
 import com.troytan.ymcake.domain.Order;
 import com.troytan.ymcake.domain.Product;
 import com.troytan.ymcake.domain.ProductOrder;
 import com.troytan.ymcake.dto.DeliveryDto;
+import com.troytan.ymcake.dto.OrderDto;
+import com.troytan.ymcake.repository.DeliveryMapper;
 import com.troytan.ymcake.repository.OrderMapper;
 import com.troytan.ymcake.repository.ProductMapper;
 import com.troytan.ymcake.repository.ProductOrderMapper;
 import com.troytan.ymcake.repository.ShopcartMapper;
+import com.troytan.ymcake.vo.OrderVo;
 
 @Service
+@Transactional
 public class OrderServiceImpl implements OrderService {
 
     @Autowired
@@ -30,6 +35,8 @@ public class OrderServiceImpl implements OrderService {
     private UserService        userService;
     @Autowired
     private ShopcartMapper     shopcartMapper;
+    @Autowired
+    private DeliveryMapper     deliveryMapper;
 
     /**
      * 创建订单
@@ -41,10 +48,18 @@ public class OrderServiceImpl implements OrderService {
      * @see com.troytan.ymcake.service.OrderService#createOrder(java.util.List)
      */
     @Override
-    @Transactional
-    public Order createOrder(List<ProductOrder> productOrders) {
+    public Order createOrder(OrderDto orderDto) {
+        // 新增tt_delivery记录
+        Delivery delivery = new Delivery();
+        delivery.setAddrId(orderDto.getAddrId());
+        delivery.setReceiveTime(orderDto.getReceiveTime());
+        delivery.setType(orderDto.getType());
+        deliveryMapper.insert(delivery);
 
+        // 新增tt_order记录
+        List<ProductOrder> productOrders = orderDto.getProductList();
         Order order = new Order();
+        order.setDeliveryId(delivery.getDeliveryId());
         order.setPrice(countPrice(productOrders));
         order.setDeliveryFee(new BigDecimal(order.getPrice().intValue() > 200 ? 0 : 10));
         order.setStatus(DomainConst.STATUS_NEW);
@@ -58,6 +73,7 @@ public class OrderServiceImpl implements OrderService {
             // 扣减购物车
             shopcartMapper.updateCountByOrder(productOrder, userService.getCurrentUser());
         }
+        // 新增tr_product_order关联记录
         productOrderMapper.insertBatch(productOrders);
 
         return order;
@@ -87,11 +103,9 @@ public class OrderServiceImpl implements OrderService {
      */
     @Override
     public void deliverOrder(Long orderId, DeliveryDto deliveryDto) {
-        Order order = orderMapper.selectByPrimaryKey(orderId);
-        order.setDeliveryNo(deliveryDto.getDeliveryNo());
-        order.setDeliveryCompany(deliveryDto.getDeliveryCompany());
-        order.setStatus(DomainConst.STATUS_DELIVER);
-        orderMapper.updateByPrimaryKey(order);
+
+        deliveryMapper.updateByOrderId(orderId, deliveryDto);
+        orderMapper.updateStatusById(orderId, DomainConst.STATUS_DELIVER);
     }
 
     /**
@@ -109,6 +123,11 @@ public class OrderServiceImpl implements OrderService {
         }).sum();
 
         return new BigDecimal(result);
+    }
+
+    @Override
+    public List<OrderVo> getOrderList(Short status) {
+        return orderMapper.selectByStatus(status,userService.getCurrentUser());
     }
 
 }

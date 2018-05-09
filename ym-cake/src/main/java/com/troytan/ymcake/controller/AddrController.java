@@ -74,7 +74,13 @@ public class AddrController {
         
         addrService.setDefault(addrId);
     }
-
+    
+    @GET
+    @Path("/getDefault")
+    public Addr getDefaultAddr() {
+        return addrService.getDefaultAddr();
+    }
+ 
     /**
      * 删除地址
      *

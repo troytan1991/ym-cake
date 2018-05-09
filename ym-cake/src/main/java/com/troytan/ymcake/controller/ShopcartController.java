@@ -14,8 +14,8 @@ import javax.ws.rs.Produces;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import com.troytan.ymcake.domain.Shopcart;
 import com.troytan.ymcake.service.ShopcartService;
+import com.troytan.ymcake.vo.ShopcartVo;
 
 @Controller
 @Path("/shopcart")
@@ -81,9 +81,9 @@ public class ShopcartController {
      * @return
      */
     @DELETE
-    @Path("/{productId}/{sizeId}")
-    public void deleteShopcart(@PathParam("productId") Long productId, @PathParam("sizeId") Long sizeId) {
-        shopcartService.deleteShopcart(productId, sizeId);
+    @Path("/{shopcartId}")
+    public void deleteShopcart(@PathParam("shopcartId") Long shopcartId) {
+        shopcartService.deleteShopcart(shopcartId);
     }
 
     /**
@@ -94,8 +94,8 @@ public class ShopcartController {
      * @return
      */
     @GET
-    @Path("/all")
-    public List<Shopcart> getShopcartList() {
+    @Path("/shopcarts")
+    public List<ShopcartVo> getShopcartList() {
         return shopcartService.getShopcartList();
     }
 

@@ -64,11 +64,28 @@
     select COMMENT_ID, comment, USER_ID, ORDER_ID, created_on, created_by
     from tt_comment
   </select>
+  
+  <resultMap id="CommentVoResultMap" type="com.troytan.ymcake.vo.CommentVo">
+    <id column="COMMENT_ID" jdbcType="INTEGER" property="commentId" />
+    <result column="avatar_url" jdbcType="VARCHAR" property="avatarUrl" />
+    <result column="nickname" jdbcType="VARCHAR" property="nickname" />
+    <result column="comment_date" jdbcType="TIMESTAMP" property="commentDate" />
+    <result column="comment" jdbcType="VARCHAR" property="comment" />
+    <result column="description" jdbcType="VARCHAR" property="size" />
+    <result column="order_date" jdbcType="TIMESTAMP" property="orderDate" />
+  </resultMap>
   <!-- 获取商品评价 -->
-  <select id="selectByProductId" resultMap="BaseResultMap">
-    select COMMENT_ID, comment, USER_ID, ORDER_ID, created_on, created_by
-    from tt_comment
-    where ORDER_ID in 
-        (select ORDER_ID from tr_product_order where PRODUCT_ID =#{productId, jdbcType=DECIMAL})
+  <select id="selectByProductId" resultMap="CommentVoResultMap">
+    select comment.COMMENT_ID,comment.created_on as comment_date, comment.comment,
+	 user.avatar_url, user.nickname,
+	 ord.created_on as order_date,
+	 size.description
+	from tt_comment comment
+	left join tm_user user on user.USER_ID = comment.USER_ID
+	left join tt_order ord on ord.ORDER_ID = comment.ORDER_ID
+	left join tt_size size on size.size_id=
+        (select  size_id from tr_product_order pord 
+        where pord.ORDER_ID=comment.ORDER_ID and pord.PRODUCT_ID=#{productId, jdbcType=DECIMAL} limit 1)
+    where size.PRODUCT_ID=#{productId, jdbcType=DECIMAL}
   </select>
 </mapper>

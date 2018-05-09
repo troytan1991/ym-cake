@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.troytan.ymcake.domain.Shopcart;
 import com.troytan.ymcake.repository.ShopcartMapper;
+import com.troytan.ymcake.vo.ShopcartVo;
 
 @Service
 @Transactional
@@ -51,12 +52,12 @@ public class ShopcartServiceImpl implements ShopcartService {
     }
 
     @Override
-    public void deleteShopcart(Long productId, Long sizeId) {
-        shopcartMapper.deleteByProduct(productId, sizeId, userService.getCurrentUser());
+    public void deleteShopcart(Long shopcartId) {
+        shopcartMapper.deleteByKeyAndUser(shopcartId, userService.getCurrentUser());
     }
 
     @Override
-    public List<Shopcart> getShopcartList() {
+    public List<ShopcartVo> getShopcartList() {
 
         return shopcartMapper.selectByUser(userService.getCurrentUser());
     }

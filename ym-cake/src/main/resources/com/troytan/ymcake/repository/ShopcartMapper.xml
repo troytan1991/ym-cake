@@ -33,10 +33,9 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into tt_shopcart (USER_ID, PRODUCT_ID, count, 
-      created_on, created_by, updated_on, 
-      updated_by, SIZE_ID)
+      created_on, created_by, SIZE_ID)
     values (#{userId,jdbcType=INTEGER}, #{productId,jdbcType=INTEGER}, #{count,jdbcType=SMALLINT}, 
-      #{createdOn,jdbcType=TIMESTAMP}, #{createdBy,jdbcType=VARCHAR}, #{sizeId,jdbcType=INTEGER})
+      now(), #{createdBy,jdbcType=VARCHAR}, #{sizeId,jdbcType=INTEGER})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.troytan.ymcake.domain.Shopcart">
     <!--
@@ -89,16 +88,16 @@
     and user_id=#{userId, jdbcType=DECIMAL}
   </select>
   <select id="selectCountByUser" resultType="Integer">
-    select count(*) from tt_shopcart
+    select sum(count) from tt_shopcart
     where user_id =#{userId, jdbcType=DECIMAL}
   </select>
-  <update id="addCountByProduct" >
+  <update id="addCountByProduct">
     update tt_shopcart set count=count+1
     where product_id=#{productId,jdbcType=DECIMAL}
     and size_id=#{sizeId, jdbcType=DECIMAL}
     and user_id=#{userId, jdbcType=DECIMAL}
   </update>
-  <update id="subCountByProduct" >
+  <update id="subCountByProduct">
     update tt_shopcart set count=count-1
     where product_id=#{productId,jdbcType=DECIMAL}
     and size_id=#{sizeId, jdbcType=DECIMAL}
@@ -110,10 +109,31 @@
     and size_id=#{sizeId, jdbcType=DECIMAL}
     and user_id=#{userId, jdbcType=DECIMAL}
   </delete>
-   <select id="selectByUser" resultMap="BaseResultMap">
-    select SHOPCART_ID, USER_ID, PRODUCT_ID, count, created_on, created_by, updated_on, 
-    updated_by, SIZE_ID
-    from tt_shopcart
-    where user_id=#{userId, jdbcType=DECIMAL}
+  <resultMap id="ShopcartVoResultMap" type="com.troytan.ymcake.vo.ShopcartVo">
+    <id column="SHOPCART_ID" jdbcType="INTEGER" property="shopcartId" />
+    <result column="count" jdbcType="SMALLINT" property="count" />
+    <result column="PRODUCT_ID" jdbcType="INTEGER" property="productId" />
+    <result column="img_url" jdbcType="VARCHAR" property="imgUrl" />
+    <result column="name" jdbcType="VARCHAR" property="title" />
+    <result column="SIZE_ID" jdbcType="INTEGER" property="sizeId" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="is_selected" jdbcType="TINYINT" property="isSelected" />
+  </resultMap>
+   <select id="selectByUser" resultMap="ShopcartVoResultMap">
+    select shopcart.SHOPCART_ID,shopcart.count,
+	    product.PRODUCT_ID,product.img_url,product.name,
+	    size.SIZE_ID,size.description, size.price, 0 as is_selected
+	from tt_shopcart shopcart
+	left join tt_product product on product.PRODUCT_ID=shopcart.PRODUCT_ID
+	left join tt_size size on size.SIZE_ID = shopcart.SIZE_ID
+	where 
+	count>0 and user_id=#{userId, jdbcType=DECIMAL}
   </select>
+  <delete id="deleteByKeyAndUser" >
+    delete from tt_shopcart
+    where SHOPCART_ID = #{shopcartId,jdbcType=INTEGER}
+     and user_id=#{userId, jdbcType=DECIMAL}
+   
+  </delete>
 </mapper>

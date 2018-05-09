@@ -2,7 +2,7 @@ package com.troytan.ymcake.service;
 
 import java.util.List;
 
-import com.troytan.ymcake.domain.Shopcart;
+import com.troytan.ymcake.vo.ShopcartVo;
 
 public interface ShopcartService {
 
@@ -12,9 +12,9 @@ public interface ShopcartService {
 
     void decreaseShopcart(Long productId, Long sizeId);
 
-    void deleteShopcart(Long productId, Long sizeId);
+    void deleteShopcart(Long shopcartId);
 
-    List<Shopcart> getShopcartList();
+    List<ShopcartVo> getShopcartList();
 
     int getShopcartCount();
 
