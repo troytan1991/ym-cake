@@ -8,5 +8,6 @@ public class DomainConst {
     public static final Short STATUS_DELIVER  = 50; // 已发货
     public static final Short STATUS_RECEIVE  = 90; // 已签收
     public static final Short STATUS_COMPLETE = 100;// 已完成
+    public static final Short STATUS_DELETE   = 200;// 已删除
     public static final Short STATUS_CANCEL   = 0;  // 取消
 }

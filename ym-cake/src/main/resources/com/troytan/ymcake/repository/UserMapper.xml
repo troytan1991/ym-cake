@@ -35,12 +35,11 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into tm_user (avatar_url, gender, nickname, 
-      province, created_on, created_by, 
-      updated_on, updated_by, phone_no, 
+      province, created_on, created_by,phone_no, 
       open_id)
     values (#{avatarUrl,jdbcType=VARCHAR}, #{gender,jdbcType=DECIMAL}, #{nickname,jdbcType=VARCHAR}, 
-      #{province,jdbcType=VARCHAR}, #{createdOn,jdbcType=TIMESTAMP}, #{createdBy,jdbcType=VARCHAR}, 
-      #{updatedOn,jdbcType=TIMESTAMP}, #{updatedBy,jdbcType=VARCHAR}, #{phoneNo,jdbcType=VARCHAR}, 
+      #{province,jdbcType=VARCHAR}, now(), #{createdBy,jdbcType=VARCHAR},
+      #{phoneNo,jdbcType=VARCHAR}, 
       #{openId,jdbcType=VARCHAR})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.troytan.ymcake.domain.User">
@@ -79,5 +78,13 @@
     select USER_ID, avatar_url, gender, nickname, province, created_on, created_by, updated_on, 
     updated_by, phone_no, open_id
     from tm_user
+  </select>
+  
+  <!-- 根据openId获取用户 -->
+   <select id="selectByOpenId" parameterType="String" resultMap="BaseResultMap">
+    select USER_ID, avatar_url, gender, nickname, province, created_on, created_by, updated_on, 
+    updated_by, phone_no, open_id
+    from tm_user
+    where open_id = #{openId,jdbcType=VARCHAR}
   </select>
 </mapper>

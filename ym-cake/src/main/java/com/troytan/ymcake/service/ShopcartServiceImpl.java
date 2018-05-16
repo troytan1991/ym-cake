@@ -52,8 +52,9 @@ public class ShopcartServiceImpl implements ShopcartService {
     }
 
     @Override
-    public void deleteShopcart(Long shopcartId) {
+    public List<ShopcartVo> deleteShopcart(Long shopcartId) {
         shopcartMapper.deleteByKeyAndUser(shopcartId, userService.getCurrentUser());
+        return shopcartMapper.selectByUser(userService.getCurrentUser());
     }
 
     @Override

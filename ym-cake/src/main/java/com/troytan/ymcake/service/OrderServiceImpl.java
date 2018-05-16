@@ -10,15 +10,17 @@ import org.springframework.transaction.annotation.Transactional;
 import com.troytan.ymcake.domain.Delivery;
 import com.troytan.ymcake.domain.DomainConst;
 import com.troytan.ymcake.domain.Order;
-import com.troytan.ymcake.domain.Product;
 import com.troytan.ymcake.domain.ProductOrder;
+import com.troytan.ymcake.domain.Size;
 import com.troytan.ymcake.dto.DeliveryDto;
+import com.troytan.ymcake.dto.OrderCountDto;
 import com.troytan.ymcake.dto.OrderDto;
 import com.troytan.ymcake.repository.DeliveryMapper;
 import com.troytan.ymcake.repository.OrderMapper;
-import com.troytan.ymcake.repository.ProductMapper;
 import com.troytan.ymcake.repository.ProductOrderMapper;
 import com.troytan.ymcake.repository.ShopcartMapper;
+import com.troytan.ymcake.repository.SizeMapper;
+import com.troytan.ymcake.vo.OrderCountVo;
 import com.troytan.ymcake.vo.OrderVo;
 
 @Service
@@ -30,13 +32,13 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private ProductOrderMapper productOrderMapper;
     @Autowired
-    private ProductMapper      productMapper;
-    @Autowired
     private UserService        userService;
     @Autowired
     private ShopcartMapper     shopcartMapper;
     @Autowired
     private DeliveryMapper     deliveryMapper;
+    @Autowired
+    private SizeMapper         sizeMapper;
 
     /**
      * 创建订单
@@ -118,16 +120,77 @@ public class OrderServiceImpl implements OrderService {
      */
     private BigDecimal countPrice(List<ProductOrder> productOrders) {
         double result = productOrders.parallelStream().mapToDouble(item -> {
-            Product product = productMapper.selectByPrimaryKey(item.getProductId());
-            return product.getPrice().doubleValue() * item.getCount();
+            Size size = sizeMapper.selectByPrimaryKey(item.getSizeId());
+            return size.getPrice().doubleValue() * item.getCount();
         }).sum();
 
         return new BigDecimal(result);
     }
 
+    /**
+     * 根据状态获取订单
+     *
+     * @author troytan
+     * @date 2018年5月14日
+     * @param status
+     * @return (non-Javadoc)
+     * @see com.troytan.ymcake.service.OrderService#getOrderList(java.lang.Short)
+     */
     @Override
     public List<OrderVo> getOrderList(Short status) {
-        return orderMapper.selectByStatus(status,userService.getCurrentUser());
+        List<OrderVo> list = orderMapper.selectByStatus(status, userService.getCurrentUser());
+        for (OrderVo orderVo : list) {
+            orderVo.mapToStatusStr();
+        }
+        return list;
+    }
+
+    /**
+     * 以状态分组获取订单数量
+     *
+     * @author troytan
+     * @date 2018年5月14日
+     * @return (non-Javadoc)
+     * @see com.troytan.ymcake.service.OrderService#countOrder()
+     */
+    @Override
+    public OrderCountVo countOrder() {
+        OrderCountVo orderCountVo = new OrderCountVo();
+        List<OrderCountDto> list = orderMapper.countOrderGroupByStatus(userService.getCurrentUser());
+        for (OrderCountDto orderCountDto : list) {
+            switch (orderCountDto.getStatus()) {
+                case 1:
+                    orderCountVo.setStatusNew(orderCountDto.getCount());
+                    break;
+                case 10:
+                    orderCountVo.setStatusPay(orderCountDto.getCount());
+                    break;
+                case 50:
+                    orderCountVo.setStatusDelivery(orderCountDto.getCount());
+                    break;
+                case 90:
+                    orderCountVo.setStatusReceive(orderCountDto.getCount());
+                    break;
+                default:
+                    break;
+            }
+        }
+        return orderCountVo;
+    }
+
+    @Override
+    public void cancelOrder(Long orderId) {
+        orderMapper.updateStatusById(orderId, DomainConst.STATUS_CANCEL);
+    }
+
+    @Override
+    public void receiveOrder(Long orderId) {
+        orderMapper.updateStatusById(orderId, DomainConst.STATUS_RECEIVE);
+    }
+
+    @Override
+    public void deleteOrder(Long orderId) {
+        orderMapper.updateStatusById(orderId, DomainConst.STATUS_DELETE);
     }
 
 }

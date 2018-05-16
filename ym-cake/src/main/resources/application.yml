@@ -10,6 +10,12 @@ pagehelper:
 server:
   session.timeout: 900
   context-path: /ymcake
+  port: 8080
+  
+wx:
+  appId: wxf16b6adb67d33eee
+  appSecret: ba312ecea840ec4eb46e5e5f626327c1
+  oauthUrl: https://api.weixin.qq.com/sns/jscode2session
 
 ---
 spring:
@@ -19,3 +25,19 @@ spring:
     url: jdbc:mysql://localhost:3306/owcake?useSSL=false
     username: owcake
     password: Pass1234
+    
+---
+spring:
+  profiles: prod
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://47.98.119.1:3306/owcake?useSSL=false
+    username: owcake
+    password: 2wsx#EDC
+    
+server:
+  port: 443
+  ssl:
+    key-store: classpath:troytan1991.club.pfx
+    key-store-password: 4nh0hc1eabd49
+    keyStoreType: PKCS12

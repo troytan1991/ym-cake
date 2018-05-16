@@ -82,8 +82,8 @@ public class ShopcartController {
      */
     @DELETE
     @Path("/{shopcartId}")
-    public void deleteShopcart(@PathParam("shopcartId") Long shopcartId) {
-        shopcartService.deleteShopcart(shopcartId);
+    public List<ShopcartVo> deleteShopcart(@PathParam("shopcartId") Long shopcartId) {
+        return shopcartService.deleteShopcart(shopcartId);
     }
 
     /**

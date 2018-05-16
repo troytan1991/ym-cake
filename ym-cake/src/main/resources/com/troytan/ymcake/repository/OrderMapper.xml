@@ -89,33 +89,42 @@
   </update>
   <resultMap id="OrderVoResultMap" type="com.troytan.ymcake.vo.OrderVo">
     <id column="ORDER_ID" jdbcType="INTEGER" property="orderId" />
+    <result column="created_on" jdbcType="TIMESTAMP" property="createdOn" />
     <result column="status" jdbcType="SMALLINT" property="status" />
     <result column="price" jdbcType="DECIMAL" property="price" />
-    <result column="created_on" jdbcType="TIMESTAMP" property="createdOn" />
-    <result column="updated_on" jdbcType="TIMESTAMP" property="updatedOn" />
     <result column="DELIVERY_ID" jdbcType="INTEGER" property="deliveryId" />
+    <result column="delivery_fee" jdbcType="DECIMAL" property="deliveryFee" />
     <collection ofType="com.troytan.ymcake.vo.OrderProductVo" property="productList">
-        <id column="PRODUCT_ID" jdbcType="DECIMAL" property="productId" />
+        <result column="PRODUCT_ID" jdbcType="DECIMAL" property="productId" />
         <result column="count"  jdbcType="SMALLINT" property="count" />
         <result column="description"  jdbcType="VARCHAR" property="sizeDescription" />
-        <result column="price"  jdbcType="DECIMAL" property="price" />
+        <result column="product_price"  jdbcType="DECIMAL" property="price" />
         <result column="name"  jdbcType="VARCHAR" property="name" />
         <result column="img_url"  jdbcType="VARCHAR" property="imgUrl" />
     </collection>
   </resultMap>
   <select id="selectByStatus" resultMap="OrderVoResultMap">
-	select ord.ORDER_ID,ord.status,ord.price,ord.created_on,ord.updated_on,ord.DELIVERY_ID,
-		pord.PRODUCT_ID, pord.count,
-		size.description, size.price,
-		product.name,product.img_url    
-	from owcake.tt_order ord
-		left join tr_product_order pord on pord.ORDER_ID = ord.ORDER_ID
-		left join tt_product product on product.PRODUCT_ID = pord.PRODUCT_ID
-		left join tt_size size on size.SIZE_ID = pord.SIZE_ID
+	select ord.ORDER_ID,ord.created_on,ord.status,ord.price,ord.DELIVERY_ID,ord.delivery_fee,
+        pord.PRODUCT_ID, pord.count,
+        size.description, size.price as product_price,
+        product.name,product.img_url    
+    from owcake.tt_order ord
+        left join tr_product_order pord on pord.ORDER_ID = ord.ORDER_ID
+        left join tt_product product on product.PRODUCT_ID = pord.PRODUCT_ID
+        left join tt_size size on size.SIZE_ID = pord.SIZE_ID
 	where 
 	    <if test="status != -1">
 	       ord.status=#{status, jdbcType=SMALLINT} and
 	    </if> 
-	    ord.USER_ID =#{userId, jdbcType=DECIMAL}
+	    ord.USER_ID =#{userId, jdbcType=DECIMAL} and
+	    ord.status != 200
+	order by created_on desc
+  </select>
+  <select id="countOrderGroupByStatus" resultType="com.troytan.ymcake.dto.OrderCountDto">
+	select count(status) as count,status from tt_order
+	where status in (1,10,50,90) and 
+	  USER_ID =#{userId, jdbcType=DECIMAL} and
+	  status != 200
+	group by status
   </select>
 </mapper>

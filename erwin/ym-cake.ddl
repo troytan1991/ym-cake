@@ -1,13 +1,21 @@
 
-DROP TABLE TT_SIZE;
+DROP INDEX XAK1购物车 ON TT_SHOPCART;
+
+DROP INDEX XAK1订单 ON TT_ORDER;
+
+DROP INDEX XAK1用户表 ON TM_USER;
 
 DROP TABLE TR_PRODUCT_ORDER;
 
 DROP TABLE TT_SHOPCART;
 
+DROP TABLE TT_SIZE;
+
 DROP TABLE TT_COMMENT;
 
 DROP TABLE TT_ORDER;
+
+DROP TABLE TT_DELIVERY;
 
 DROP TABLE TT_ADDR;
 
@@ -29,17 +37,23 @@ CREATE TABLE TM_AREA
 
 CREATE TABLE TM_USER
 (
-	avatar_url           VARCHAR(100) NULL,
+	avatar_url           VARCHAR(200) NULL,
 	gender               DECIMAL(1,0) NULL,
 	nickname             VARCHAR(20) NULL,
 	province             VARCHAR(20) NULL,
 	USER_ID              INTEGER NOT NULL AUTO_INCREMENT,
-	created_on           DATE NULL,
-	created_by           VARCHAR(20) NULL,
-	updated_on           DATE NULL,
+	created_on           DATETIME NULL,
+	created_by           VARCHAR(50) NULL,
+	updated_on           DATETIME NULL,
 	updated_by           VARCHAR(20) NULL,
 	phone_no             VARCHAR(20) NULL,
+	open_id              VARCHAR(50) NULL,
 	PRIMARY KEY (USER_ID)
+);
+
+CREATE UNIQUE INDEX XAK1用户表 ON TM_USER
+(
+	open_id ASC
 );
 
 CREATE TABLE TR_PRODUCT_ORDER
@@ -47,7 +61,8 @@ CREATE TABLE TR_PRODUCT_ORDER
 	ORDER_ID             INTEGER NOT NULL,
 	PRODUCT_ID           INTEGER NOT NULL,
 	count                SMALLINT NULL,
-	PRIMARY KEY (ORDER_ID,PRODUCT_ID)
+	SIZE_ID              INTEGER NOT NULL,
+	PRIMARY KEY (ORDER_ID,PRODUCT_ID,SIZE_ID)
 ) AUTO_INCREMENT = 10000;
 
 CREATE TABLE TT_ADDR
@@ -56,12 +71,14 @@ CREATE TABLE TT_ADDR
 	receiver             VARCHAR(20) NOT NULL,
 	phone                VARCHAR(20) NOT NULL,
 	detail               VARCHAR(50) NOT NULL,
-	created_on           DATE NULL,
+	created_on           DATETIME NULL,
 	created_by           VARCHAR(20) NULL,
-	updated_on           DATE NULL,
+	updated_on           DATETIME NULL,
 	updated_by           VARCHAR(20) NULL,
 	USER_ID              INTEGER NOT NULL,
 	AREA_ID              INTEGER NOT NULL,
+	is_default           boolean NULL,
+	area_str             VARCHAR(50) NULL,
 	PRIMARY KEY (ADDR_ID)
 );
 
@@ -71,36 +88,54 @@ CREATE TABLE TT_COMMENT
 	comment              VARCHAR(100) NOT NULL,
 	USER_ID              INTEGER NOT NULL,
 	ORDER_ID             INTEGER NOT NULL,
-	created_on           DATE NULL,
+	created_on           DATETIME NULL,
 	created_by           VARCHAR(20) NULL,
 	PRIMARY KEY (COMMENT_ID)
 );
+
+CREATE TABLE TT_DELIVERY
+(
+	DELIVERY_ID          INTEGER NOT NULL AUTO_INCREMENT,
+	delivery_no          VARCHAR(20) NULL,
+	delivery_company     VARCHAR(20) NULL,
+	ADDR_ID              INTEGER NOT NULL,
+	type                 DECIMAL(1) NULL,
+	receive_time         DATETIME NULL,
+	PRIMARY KEY (DELIVERY_ID)
+) AUTO_INCREMENT = 10000;
 
 CREATE TABLE TT_ORDER
 (
 	ORDER_ID             INTEGER NOT NULL AUTO_INCREMENT,
 	status               SMALLINT NOT NULL,
-	price                FLOAT NOT NULL,
-	delivery_fee         FLOAT NOT NULL,
-	created_on           DATE NULL,
+	price                DECIMAL(10,2) NOT NULL,
+	created_on           DATETIME NULL,
 	created_by           VARCHAR(20) NULL,
-	updated_on           DATE NULL,
+	updated_on           DATETIME NULL,
 	updated_by           VARCHAR(20) NULL,
-	delivery_no          VARCHAR(20) NULL,
-	delivery_company     VARCHAR(20) NULL,
+	transaction_id       VARCHAR(30) NULL,
+	USER_ID              INTEGER NOT NULL,
+	DELIVERY_ID          INTEGER NULL,
+	remark               VARCHAR(30) NULL,
+	delivery_fee         DECIMAL(5,2) NOT NULL,
 	PRIMARY KEY (ORDER_ID)
 ) AUTO_INCREMENT = 10000;
+
+CREATE UNIQUE INDEX XAK1订单 ON TT_ORDER
+(
+	DELIVERY_ID ASC
+);
 
 CREATE TABLE TT_PRODUCT
 (
 	PRODUCT_ID           INTEGER NOT NULL AUTO_INCREMENT,
 	img_url              VARCHAR(50) NOT NULL,
-	price                FLOAT NOT NULL,
+	price                DECIMAL(10,2) NOT NULL,
 	name                 VARCHAR(20) NOT NULL,
 	description          VARCHAR(100) NULL,
-	created_on           DATE NULL,
+	created_on           DATETIME NULL,
 	created_by           VARCHAR(20) NULL,
-	updated_on           DATE NULL,
+	updated_on           DATETIME NULL,
 	updated_by           VARCHAR(20) NULL,
 	detail_url           VARCHAR(50) NULL,
 	PRIMARY KEY (PRODUCT_ID)
@@ -120,18 +155,26 @@ CREATE TABLE TT_SHOPCART
 	USER_ID              INTEGER NOT NULL,
 	PRODUCT_ID           INTEGER NOT NULL,
 	count                SMALLINT NULL,
-	created_on           DATE NULL,
+	created_on           DATETIME NULL,
 	created_by           VARCHAR(20) NULL,
-	updated_on           DATE NULL,
+	updated_on           DATETIME NULL,
 	updated_by           VARCHAR(20) NULL,
+	SIZE_ID              INTEGER NOT NULL,
 	PRIMARY KEY (SHOPCART_ID)
+);
+
+CREATE UNIQUE INDEX XAK1购物车 ON TT_SHOPCART
+(
+	PRODUCT_ID ASC,
+	USER_ID ASC,
+	SIZE_ID ASC
 );
 
 CREATE TABLE TT_SIZE
 (
 	SIZE_ID              INTEGER NOT NULL AUTO_INCREMENT,
 	description          VARCHAR(20) NOT NULL,
-	price                FLOAT NOT NULL,
+	price                DECIMAL(10,2) NOT NULL,
 	PRODUCT_ID           INTEGER NOT NULL,
 	PRIMARY KEY (SIZE_ID)
 );
@@ -141,6 +184,9 @@ ADD FOREIGN KEY R_2 (ORDER_ID) REFERENCES TT_ORDER (ORDER_ID);
 
 ALTER TABLE TR_PRODUCT_ORDER
 ADD FOREIGN KEY R_3 (PRODUCT_ID) REFERENCES TT_PRODUCT (PRODUCT_ID);
+
+ALTER TABLE TR_PRODUCT_ORDER
+ADD FOREIGN KEY R_14 (SIZE_ID) REFERENCES TT_SIZE (SIZE_ID);
 
 ALTER TABLE TT_ADDR
 ADD FOREIGN KEY R_10 (USER_ID) REFERENCES TM_USER (USER_ID);
@@ -154,6 +200,15 @@ ADD FOREIGN KEY R_8 (USER_ID) REFERENCES TM_USER (USER_ID);
 ALTER TABLE TT_COMMENT
 ADD FOREIGN KEY R_9 (ORDER_ID) REFERENCES TT_ORDER (ORDER_ID);
 
+ALTER TABLE TT_DELIVERY
+ADD FOREIGN KEY R_18 (ADDR_ID) REFERENCES TT_ADDR (ADDR_ID);
+
+ALTER TABLE TT_ORDER
+ADD FOREIGN KEY R_15 (USER_ID) REFERENCES TM_USER (USER_ID);
+
+ALTER TABLE TT_ORDER
+ADD FOREIGN KEY R_17 (DELIVERY_ID) REFERENCES TT_DELIVERY (DELIVERY_ID);
+
 ALTER TABLE TT_PRODUCT_PIC
 ADD FOREIGN KEY R_12 (PRODUCT_ID) REFERENCES TT_PRODUCT (PRODUCT_ID);
 
@@ -162,6 +217,9 @@ ADD FOREIGN KEY R_4 (USER_ID) REFERENCES TM_USER (USER_ID);
 
 ALTER TABLE TT_SHOPCART
 ADD FOREIGN KEY R_5 (PRODUCT_ID) REFERENCES TT_PRODUCT (PRODUCT_ID);
+
+ALTER TABLE TT_SHOPCART
+ADD FOREIGN KEY R_16 (SIZE_ID) REFERENCES TT_SIZE (SIZE_ID);
 
 ALTER TABLE TT_SIZE
 ADD FOREIGN KEY R_1 (PRODUCT_ID) REFERENCES TT_PRODUCT (PRODUCT_ID);

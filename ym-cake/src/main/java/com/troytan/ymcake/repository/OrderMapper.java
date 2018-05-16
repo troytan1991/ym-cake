@@ -1,11 +1,12 @@
 package com.troytan.ymcake.repository;
 
-import com.troytan.ymcake.domain.Order;
-import com.troytan.ymcake.vo.OrderVo;
-
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
+
+import com.troytan.ymcake.domain.Order;
+import com.troytan.ymcake.dto.OrderCountDto;
+import com.troytan.ymcake.vo.OrderVo;
 
 public interface OrderMapper {
 
@@ -47,4 +48,6 @@ public interface OrderMapper {
     void updateStatusById(@Param("orderId") Long orderId, @Param("status") Short status);
 
     List<OrderVo> selectByStatus(@Param("status") Short status, @Param("userId") Long userId);
+
+    List<OrderCountDto> countOrderGroupByStatus(Long currentUser);
 }

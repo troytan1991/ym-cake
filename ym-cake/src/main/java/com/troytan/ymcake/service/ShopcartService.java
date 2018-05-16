@@ -12,7 +12,7 @@ public interface ShopcartService {
 
     void decreaseShopcart(Long productId, Long sizeId);
 
-    void deleteShopcart(Long shopcartId);
+    List<ShopcartVo> deleteShopcart(Long shopcartId);
 
     List<ShopcartVo> getShopcartList();
 
