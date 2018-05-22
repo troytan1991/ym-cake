@@ -55,4 +55,27 @@
     select AREA_ID, name, PARENT_ID
     from tm_area
   </select>
+  
+  <resultMap id="AreaDtoResultMap" type="com.troytan.ymcake.dto.AreaDto">
+    <id column="province_id" jdbcType="INTEGER" property="id" />
+    <result column="province_name" jdbcType="VARCHAR" property="name" />
+    <collection ofType="com.troytan.ymcake.dto.AreaDto" property="childs">
+        <id column="city_id" jdbcType="INTEGER" property="id" />
+        <result column="city_name" jdbcType="VARCHAR" property="name" />
+        <collection ofType="com.troytan.ymcake.dto.AreaDto" property="childs">
+           <id column="district_id" jdbcType="INTEGER" property="id" />
+           <result column="district_name" jdbcType="VARCHAR" property="name" />
+        </collection>
+    </collection>
+  </resultMap>
+  <!-- 获取区域列表 -->
+  <select id="listAreaDto" resultMap="AreaDtoResultMap">
+    select province.area_id as province_id, province.name as province_name, 
+	    city.area_id as city_id, city.name as city_name, 
+	    district.area_id as district_id, district.name as district_name
+    from tm_area province
+	left join tm_area city on city.PARENT_ID=province.AREA_ID
+	left join tm_area district on district.PARENT_ID=city.AREA_ID
+	where province.parent_id = 0
+  </select>
 </mapper>

@@ -12,6 +12,7 @@ import com.troytan.ymcake.controller.ContactController;
 import com.troytan.ymcake.controller.OrderController;
 import com.troytan.ymcake.controller.ProductController;
 import com.troytan.ymcake.controller.ShopcartController;
+import com.troytan.ymcake.controller.UserController;
 import com.troytan.ymcake.filter.JacksonObjectMapperProvider;
 
 @Component
@@ -20,14 +21,15 @@ public class JerseyConfig extends ResourceConfig {
 
     public JerseyConfig(){
 
-//        packages("com.troytan.ymcake.controller","com.troytan.ymcake.filter");
+        // packages("com.troytan.ymcake.controller","com.troytan.ymcake.filter");
         register(AddrController.class);
         register(CommentController.class);
         register(ContactController.class);
         register(OrderController.class);
         register(ProductController.class);
         register(ShopcartController.class);
-        
+        register(UserController.class);
+
         register(JacksonObjectMapperProvider.class);
         register(JacksonJaxbJsonProvider.class);
     }

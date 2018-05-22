@@ -1,6 +1,8 @@
 package com.troytan.ymcake.repository;
 
 import com.troytan.ymcake.domain.Area;
+import com.troytan.ymcake.dto.AreaDto;
+
 import java.util.List;
 
 public interface AreaMapper {
@@ -43,4 +45,6 @@ public interface AreaMapper {
      * @mbg.generated
      */
     int updateByPrimaryKey(Area record);
+
+    List<AreaDto> listAreaDto();
 }

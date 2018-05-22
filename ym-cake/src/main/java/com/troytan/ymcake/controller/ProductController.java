@@ -11,6 +11,7 @@ import javax.ws.rs.Produces;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import com.troytan.ymcake.aspect.NoAuth;
 import com.troytan.ymcake.domain.Product;
 import com.troytan.ymcake.service.ProductService;
 import com.troytan.ymcake.vo.ProductVo;
@@ -33,6 +34,7 @@ public class ProductController {
      */
     @GET
     @Path("/products")
+    @NoAuth
     public List<Product> getProducts() {
         return productService.listProduct();
     }
@@ -47,6 +49,7 @@ public class ProductController {
      */
     @GET
     @Path("/{productId}")
+    @NoAuth
     public ProductVo getProduct(@PathParam("productId") Long productId) {
         return productService.getProduct(productId);
     }

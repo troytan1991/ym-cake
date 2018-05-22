@@ -5,6 +5,7 @@ public class UserVo {
     private String code;
     private String avatarUrl;
     private String city;
+    private String language;
     private String country;
     private Short  gender;
     private String nickName;
@@ -64,6 +65,14 @@ public class UserVo {
 
     public void setProvince(String province) {
         this.province = province;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
     }
 
 }

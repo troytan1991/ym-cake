@@ -12,6 +12,7 @@ import javax.ws.rs.Produces;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import com.troytan.ymcake.aspect.NoAuth;
 import com.troytan.ymcake.domain.Comment;
 import com.troytan.ymcake.dto.CommentDto;
 import com.troytan.ymcake.service.CommentService;
@@ -28,11 +29,13 @@ public class CommentController {
 
     @GET
     @Path("/{productId}")
+    @NoAuth
     public List<CommentVo> getComments(@PathParam("productId") Long productId) {
         return commentService.getCommentList(productId);
     }
 
     @PUT
+    @NoAuth
     public Comment createComment(CommentDto commentDto) {
         return commentService.createComment(commentDto);
     }

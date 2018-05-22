@@ -14,7 +14,9 @@ import javax.ws.rs.Produces;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import com.troytan.ymcake.aspect.NoAuth;
 import com.troytan.ymcake.domain.Addr;
+import com.troytan.ymcake.dto.AreaDto;
 import com.troytan.ymcake.service.AddrService;
 
 @Controller
@@ -94,5 +96,12 @@ public class AddrController {
     public List<Addr> deleteAddr(@PathParam("addrId") Long addrId) {
 
         return addrService.deleteAddr(addrId);
+    }
+    
+    @GET
+    @Path("/areas")
+    @NoAuth
+    public List<AreaDto> getAreas(){
+        return addrService.getAreaList();
     }
 }

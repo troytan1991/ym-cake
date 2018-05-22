@@ -7,7 +7,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.troytan.ymcake.domain.Addr;
+import com.troytan.ymcake.dto.AreaDto;
 import com.troytan.ymcake.repository.AddrMapper;
+import com.troytan.ymcake.repository.AreaMapper;
 
 @Service
 @Transactional
@@ -15,6 +17,8 @@ public class AddrServiceImpl implements AddrService {
 
     @Autowired
     private AddrMapper  addrMapper;
+    @Autowired
+    private AreaMapper  areaMapper;
     @Autowired
     private UserService userService;
 
@@ -56,6 +60,11 @@ public class AddrServiceImpl implements AddrService {
     public Addr getDefaultAddr() {
 
         return addrMapper.selectDefaultByUserId(userService.getCurrentUser());
+    }
+
+    @Override
+    public List<AreaDto> getAreaList() {
+        return areaMapper.listAreaDto();
     }
 
 }

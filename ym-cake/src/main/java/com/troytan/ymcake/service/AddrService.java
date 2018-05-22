@@ -3,6 +3,7 @@ package com.troytan.ymcake.service;
 import java.util.List;
 
 import com.troytan.ymcake.domain.Addr;
+import com.troytan.ymcake.dto.AreaDto;
 
 public interface AddrService {
 
@@ -17,5 +18,7 @@ public interface AddrService {
     void setDefault(Long addrId);
 
     Addr getDefaultAddr();
+
+    List<AreaDto> getAreaList();
 
 }

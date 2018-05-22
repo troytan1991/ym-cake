@@ -1,5 +1,7 @@
 package com.troytan.ymcake.controller;
 
+import java.security.NoSuchAlgorithmException;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
@@ -9,6 +11,7 @@ import javax.ws.rs.core.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import com.troytan.ymcake.aspect.NoAuth;
 import com.troytan.ymcake.dto.OauthDto;
 import com.troytan.ymcake.manager.WechatManager;
 import com.troytan.ymcake.service.UserService;
@@ -23,13 +26,14 @@ public class UserController {
     @Autowired
     private WechatManager wechatManager;
     @Autowired
-    private UserService userService;
+    private UserService   userService;
 
     @PUT
     @Path("/login")
-    public String getSessionId(UserVo userVo) {
+    @NoAuth
+    public String getSessionId(UserVo userVo) throws NoSuchAlgorithmException {
         OauthDto oauthDto = wechatManager.requestOauth(userVo.getCode());
-        
-        return userService.logUser(oauthDto,userVo);
+
+        return userService.logUser(oauthDto, userVo);
     }
 }
