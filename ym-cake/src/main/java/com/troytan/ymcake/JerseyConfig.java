@@ -28,6 +28,7 @@ public class JerseyConfig extends ResourceConfig {
         register(ProductController.class);
         register(ShopcartController.class);
         
+        
         register(JacksonObjectMapperProvider.class);
         register(JacksonJaxbJsonProvider.class);
     }
