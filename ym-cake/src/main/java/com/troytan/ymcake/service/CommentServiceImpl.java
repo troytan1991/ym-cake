@@ -23,11 +23,21 @@ public class CommentServiceImpl implements CommentService {
     private CommentMapper commentMapper;
     @Autowired
     private OrderMapper   orderMapper;
-
     @Override
-    public List<CommentVo> getCommentList(Long productId) {
-        return commentMapper.selectByProductId(productId);
+    public void commentOrder(Long orderId, List<CommentDto> comments) {
+        // TODO Auto-generated method stub
+        
     }
+    @Override
+    public List<CommentDto> getCommentList(Long productId) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+//    @Override
+//    public List<CommentVo> getCommentList(Long productId) {
+//        return commentMapper.selectByProductId(productId);
+//    }
 
     /**
      * 评价订单
@@ -39,16 +49,16 @@ public class CommentServiceImpl implements CommentService {
      * @return (non-Javadoc)
      * @see com.troytan.ymcake.service.OrderService#commentOrder(java.lang.Long, java.lang.String)
      */
-    @Override
-    public Comment createComment(CommentDto commentDto) {
-        Comment comment = new Comment();
-        comment.setComment(commentDto.getComment());
-        comment.setOrderId(commentDto.getOrderId());
-        comment.setUserId(userService.getCurrentUser());
-        comment.setCreatedBy("admin");
-        commentMapper.insert(comment);
-
-        orderMapper.updateStatusById(commentDto.getOrderId(), DomainConst.STATUS_COMPLETE);
-        return comment;
-    }
+//    @Override
+//    public Comment createComment(CommentDto commentDto) {
+//        Comment comment = new Comment();
+//        comment.setComment(commentDto.getComment());
+//        comment.setOrderId(commentDto.getOrderId());
+//        comment.setUserId(userService.getCurrentUser());
+//        comment.setCreatedBy("admin");
+//        commentMapper.insert(comment);
+//
+//        orderMapper.updateStatusById(commentDto.getOrderId(), DomainConst.STATUS_COMPLETE);
+//        return comment;
+//    }
 }
