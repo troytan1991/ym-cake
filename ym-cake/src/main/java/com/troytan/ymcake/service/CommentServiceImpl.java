@@ -23,42 +23,28 @@ public class CommentServiceImpl implements CommentService {
     private CommentMapper commentMapper;
     @Autowired
     private OrderMapper   orderMapper;
+
     @Override
     public void commentOrder(Long orderId, List<CommentDto> comments) {
-        // TODO Auto-generated method stub
-        
+        // 插入tt_comment
+        for (CommentDto commentDto : comments) {
+            Comment comment = new Comment();
+            comment.setComment(commentDto.getText());
+            comment.setOrderId(orderId);
+            comment.setProductId(commentDto.getProductId());
+            comment.setUserId(userService.getCurrentUser());
+            comment.setRate(commentDto.getRate());
+            comment.setCreatedBy(userService.getCurrentUser().toString());
+            commentMapper.insert(comment);
+        }
+        // 更新订单状态
+        orderMapper.updateStatusById(orderId, DomainConst.STATUS_COMPLETE);
     }
+
     @Override
-    public List<CommentDto> getCommentList(Long productId) {
-        // TODO Auto-generated method stub
-        return null;
+    public List<CommentVo> getCommentList(Long productId) {
+
+        return commentMapper.listByProductId(productId);
     }
 
-//    @Override
-//    public List<CommentVo> getCommentList(Long productId) {
-//        return commentMapper.selectByProductId(productId);
-//    }
-
-    /**
-     * 评价订单
-     *
-     * @author troytan
-     * @date 2018年5月5日
-     * @param orderId
-     * @param content
-     * @return (non-Javadoc)
-     * @see com.troytan.ymcake.service.OrderService#commentOrder(java.lang.Long, java.lang.String)
-     */
-//    @Override
-//    public Comment createComment(CommentDto commentDto) {
-//        Comment comment = new Comment();
-//        comment.setComment(commentDto.getComment());
-//        comment.setOrderId(commentDto.getOrderId());
-//        comment.setUserId(userService.getCurrentUser());
-//        comment.setCreatedBy("admin");
-//        commentMapper.insert(comment);
-//
-//        orderMapper.updateStatusById(commentDto.getOrderId(), DomainConst.STATUS_COMPLETE);
-//        return comment;
-//    }
 }

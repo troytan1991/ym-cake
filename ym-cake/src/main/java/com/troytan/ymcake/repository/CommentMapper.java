@@ -1,9 +1,10 @@
 package com.troytan.ymcake.repository;
 
-import com.troytan.ymcake.domain.Comment;
-import com.troytan.ymcake.vo.CommentVo;
-
 import java.util.List;
+
+import com.troytan.ymcake.domain.Comment;
+import com.troytan.ymcake.dto.CommentDto;
+import com.troytan.ymcake.vo.CommentVo;
 
 public interface CommentMapper {
     /**
@@ -46,5 +47,5 @@ public interface CommentMapper {
      */
     int updateByPrimaryKey(Comment record);
 
-    List<CommentVo> selectByProductId(Long productId);
+    List<CommentVo> listByProductId(Long productId);
 }

@@ -26,13 +26,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public void setCurrentUser(Long userId) {
         userHolder.set(userId);
-
     }
 
     @Override
     public Long getCurrentUser() {
-        // return userHolder.get();
         return userHolder.get();
+//        return 1L;
     }
 
     /**

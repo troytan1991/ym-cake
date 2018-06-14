@@ -8,9 +8,10 @@ public class CommentVo {
     private String avatarUrl;
     private String nickname;
     private Date   commentDate;
-    private String comment;
+    private String text;
     private String size;
     private Date   orderDate;
+    private Short  rate;
 
     public Long getCommentId() {
         return commentId;
@@ -36,14 +37,6 @@ public class CommentVo {
         this.commentDate = commentDate;
     }
 
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
-
     public String getSize() {
         return size;
     }
@@ -66,6 +59,22 @@ public class CommentVo {
 
     public void setNickname(String nickname) {
         this.nickname = nickname;
+    }
+
+    public Short getRate() {
+        return rate;
+    }
+
+    public void setRate(Short rate) {
+        this.rate = rate;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
 
 }
