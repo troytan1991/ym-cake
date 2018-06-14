@@ -1,0 +1,97 @@
+<view class="title-section">
+  <view bindtap='onTitleTap' id='0' class="product-title {{selectedId == 0?'title-selected':''}}">商品</view>
+  <view bindtap='onTitleTap' id='1' class="detail-tile {{selectedId == 1?'title-selected':''}}">详情</view>
+  <view bindtap='onTitleTap' id='2' class="comment-title {{selectedId == 2?'title-selected':''}}">评价</view>
+</view>
+
+<swiper bindchange='onCurrentChange' class='body-section' style='height:{{bodyHeight}}px' current='{{selectedId}}'>
+  <swiper-item class="product-item">
+    <scroll-view class='item-scroll' scroll-y="truebody">
+      <swiper class='product-swiper' autoplay='true' indicator-dots='true'>
+        <swiper-item wx:for="{{product.productPicList}}" wx:key="productPicId">
+          <image src='{{item.imgUrl}}'></image>
+        </swiper-item>
+      </swiper>
+      <view class='product-info'>
+        <text class='info-title'>{{product.title}}</text>
+        <text class='info-desc'>{{product.description}}</text>
+        <view class='price-detail'>
+          <text>￥{{sizeItem.price}}</text>
+          <view>专人配送</view>
+          <view>门店自提</view>
+        </view>
+      </view>
+      <view class='choose-style' bindtap='onChooseSizeTap'>
+        <text class='choose-label'>已选</text>
+        <text class='choose-size'>{{sizeItem.description}}</text>
+        <view class='choose-nav'>></view>
+      </view>
+      <view class='slogan-section'>
+        <image src='/images/product/7.jpg'></image>
+        <view class='slogan-box'>
+          <text class='slogan-title'>YMCake</text>
+          <text class='slogan-body'>我们只做纯天然、营养、健康的手工糕点</text>
+        </view>
+      </view>
+    </scroll-view>
+  </swiper-item>
+  <swiper-item class="detail-item">
+    <scroll-view scroll-y="true" class='detail-scroll'>
+      <image src='{{product.detailUrl}}' mode='widthFix'></image>
+    </scroll-view>
+  </swiper-item>
+  <swiper-item class="comment-item">
+    <scroll-view scroll-y="true" class='item-scroll'>
+      <view wx:for="{{comments}}" wx:key="commentId" class='comment-box'>
+        <view class='purchaser-info'>
+          <image src='{{item.avatarUrl}}'></image>
+          <text class='purchaser-name'>{{item.nickname}}</text>
+          <text class='comment-date'>{{item.commentDate}}</text>
+        </view>
+         <multiple-rate disabled="true" rate="{{item.rate}}"></multiple-rate>
+        <text class='comment-body'>{{item.text}}</text>
+        <text class='buy-size'>{{item.size}}</text>
+        <text class='buy-date'>购买日期:{{item.orderDate}}</text>
+      </view>
+    </scroll-view>
+  </swiper-item>
+</swiper>
+
+<view class='order-section'>
+  <view class='shopcart-img' bindtap='onShopcartTap'>
+    <view class='badge'>{{shopcartCount}}</view>
+    <image src='/image/shopcart.png' />
+    <text>购物车</text>
+  </view>
+  <button bindtap='onAddTap' size='middle' type='warn'>加入购物车</button>
+</view>
+<view class="shade-section {{showShade?'show':'hide'}}" animation="{{shade_animation}}"></view>
+<view class="place-section" animation="{{translate_animation}}">
+  <view class='blank-place' bindtap='onBlankTap'></view>
+  <view class='title-place'>
+    <view class='place-img'>
+      <image src='{{product.imgUrl}}'></image>
+    </view>
+    <view class='place-detail'>
+      <text class='place-title'>{{product.title}}</text>
+      <text class='place-price'>￥{{sizeItem.price}}</text>
+      <text class='place-no'>商品编号:{{product.productId}}</text>
+    </view>
+    <view class='close-btn' bindtap='onCloseTap'>ｘ</view>
+  </view>
+  <view class='classify-place'>
+    <text>尺寸</text>
+    <view class='size-section'>
+      <view wx:for="{{product.sizeList}}" wx:key="sizeId" bindtap='onSizeTap' data-item="{{item}}" id="{{item.sizeId}}" class="product-size {{sizeItem.sizeId ==item.sizeId?'size-selected':''}}">{{item.description}}</view>
+    </view>
+    <view class='count-section'>
+      <text>购买数量</text>
+      <view class='operate-section'>
+        <view bindtap='onCountSub'>-</view>
+        <text>{{count}}</text>
+        <view bindtap='onCountAdd'>+</view>
+      </view>
+    </view>
+  </view>
+  <button bindtap='onConfirmTap' class='comfirm-btn' size='middle' type='warn'>确定</button>
+</view>

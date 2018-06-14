@@ -1,0 +1,34 @@
+<view class="pay-section">
+  <view class='pay-title'>
+    <image src='/image/coupon.png'></image>
+    <text>支付方式</text>
+  </view>
+  <view class='pay-method'>
+    <view bindtap='onOnlineTap' class='frame disable'>在线支付</view>
+    <view bindtap='onCashTap' class='frame selected'>货到付款</view>
+  </view>
+</view>
+<view class='deliver-section'>
+  <view class='deliver-title'>
+    <image src='/image/delivery-fee.png'></image>
+    <text>配送方式</text>
+  </view>
+  <view class='deliver-method'>
+    <view bindtap='onDeliverTap' class="frame {{deliverMethod==0?'selected':''}}">专人配送</view>
+    <view bindtap='onPickTap' class="frame {{deliverMethod==1?'selected':''}}">上门自提</view>
+  </view>
+  <view wx:if="{{deliverMethod==1}}" class='location-mind'>
+    <text class="mind-label">自提门店:</text>
+    <text class='mind-detail'>上海市浦东新区榕桥路南1号门</text>
+  </view>
+  <view class='deliver-time'>
+    <text>{{deliverMethod==0?'送达时间':'提货时间'}}</text>
+    <picker class='time-picker' bindchange='onPickerChange' mode="multiSelector" range='{{dataArray}}' value='{{index}}' range-key='rangeKey'>
+      <view>{{dataArray[0][index[0]].rangeKey}},{{dataArray[1][index[1]].rangeKey}}</view>
+    </picker>
+  </view>
+</view>
+
+<view class='confirm-section'>
+  <button class='confirm-btn' type='warn' bindtap='onConfirmTap'>确定</button>
+</view>

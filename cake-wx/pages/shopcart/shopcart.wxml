@@ -1,0 +1,31 @@
+<scroll-view scroll-y="{{scrollY}}" class="shopcart-list" style='height:{{scrollViewHeight}}px'>
+  <view wx:for="{{carts}}" wx:key="shopcartId" class='shopcart-item' animation="{{item.wrapAnimation}}">
+    <view class='slide-item' animation="{{item.animation}}" bindtouchstart='onTouchStart' bindtouchmove='onTouchMove' bindtouchend='onTouchEnd' id='{{item.shopcartId}}'>
+      <checkbox class='checkbox' bindtap='onCheckChanged' data-id='{{item.shopcartId}}' checked='{{item.isSelected}}'></checkbox>
+      <image bindtap='onImgTab' src='{{item.imgUrl}}' data-id='{{item.productId}}'></image>
+      <view class='cart-info'>
+        <text class='info-title'>{{item.title}}</text>
+        <text class='info-detail'>{{item.description}}</text>
+        <view class='price-info'>
+          <text class='price'>￥{{item.price}}</text>
+          <view class='count-info'>
+            <view class='substract' bindtap='onSubstract' data-id='{{item.shopcartId}}'>-</view>
+            <view class='count'>
+              {{item.count}}
+            </view>
+            <view class='add' bindtap='onAdd' data-id='{{item.shopcartId}}'>+</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!--左滑删除按钮-->
+    <view bindtap='onDelCart' class='hide-btn' data-id="{{item.shopcartId}}">删除</view>
+  </view>
+
+  <view style='height:100rpx;'></view>
+</scroll-view>
+<view class='balance'>
+  <checkbox value='selectAll' checked='{{isSelectAll}}' bindtap='selectAll'>全选</checkbox>
+  <text>合计:￥{{totalPrice}}</text>
+  <button bindtap='onPayBtnTap' class='pay-btn' type='warn' size='middle'>去结算</button>
+</view>

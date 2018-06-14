@@ -1,0 +1,306 @@
+page {
+  background-color: #f2eeee;
+}
+
+.addr-section {
+  width: 100%;
+  border-top: 2rpx solid #f2eeee;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 150rpx;
+}
+
+.addr-remind {
+  position: absolute;
+  right: 55rpx;
+  color: grey;
+  font-size: 30rpx;
+}
+
+.addr-navigator {
+  display: flex;
+  align-items: center;
+}
+
+.info-container {
+  display: flex;
+  flex-direction: column;
+  height: 170rpx;
+  justify-content: center;
+}
+
+.user-info {
+  height: 60rpx;
+  line-height: 60rpx;
+}
+
+.user-info text {
+  margin-left: 70rpx;
+  font-size: 33rpx;
+  font-weight: bold;
+}
+
+.addr-info {
+  padding: 0 10rpx;
+  display: flex;
+  align-items: center;
+}
+
+.addr-info image {
+  width: 45rpx;
+  height: 45rpx;
+}
+
+.addr-info text {
+  font-size: 28rpx;
+}
+
+.navigator-arrow {
+  right: 0px;
+  position: absolute;
+}
+
+.navigator-arrow:after {
+  content: " ";
+  display: inline-block;
+  height: 18rpx;
+  width: 18rpx;
+  border-width: 2rpx 2rpx 0 0;
+  border-color: #888;
+  border-style: solid;
+  transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+  position: absolute;
+  top: 50%;
+  margin-top: -8rpx;
+  right: 28rpx;
+}
+
+.product-nav {
+  position: relative;
+  margin-top: 15rpx;
+  padding: 20rpx 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.product-section {
+  background-color: white;
+}
+
+.product-scroll {
+  width: 70%;
+  white-space: nowrap;
+  padding: 0 10rpx;
+}
+
+.product-scroll image {
+  padding: 10rpx;
+  width: 120rpx;
+  height: 120rpx;
+}
+
+.product-nav text {
+  margin-left: 75rpx;
+  margin-right: 25rpx;
+  font-size: 30rpx;
+}
+
+.line {
+  height: 1px;
+  background: #f3f0f0;
+  margin: 0px 5px;
+}
+
+.pay-info {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  right: 60rpx;
+}
+
+.pay-info text {
+  font-size: 30rpx;
+}
+
+.padding-right {
+  position: absolute;
+  right: 7rpx;
+}
+
+.price-section {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  margin-top: 20rpx;
+  height: 200rpx;
+}
+
+.price-section view {
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+  align-items: center;
+  padding: 0 20rpx;
+}
+
+.pay-section {
+  border-top: 2rpx solid #f2eeee;
+  background-color: white;
+  width: 740rpx;
+  height: 160rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 10rpx;
+  font-size: 30rpx;
+}
+
+image {
+  height: 40rpx;
+  width: 40rpx;
+  margin: 0 10rpx;
+}
+
+.pay-title {
+  display: flex;
+  color: grey;
+  font-weight: bold;
+}
+
+.pay-method {
+  display: flex;
+  margin-top: 10rpx;
+}
+
+.frame {
+  margin-left: 40rpx;
+  border: 2rpx solid grey;
+  border-radius: 5rpx;
+  padding: 10rpx;
+}
+
+.selected {
+  border: 2rpx solid red;
+  color: red;
+}
+
+.disable {
+  border: 2rpx solid #f2eeee;
+  color: #f2eeee;
+}
+
+.deliver-section {
+  background-color: white;
+  width: 740rpx;
+  display: flex;
+  flex-direction: column;
+  padding-left: 10rpx;
+  font-size: 30rpx;
+  border-top: 2rpx solid #f2eeee;
+}
+
+.deliver-title {
+  font-weight: bold;
+  color: grey;
+  margin-top: 20rpx;
+  display: flex;
+}
+
+.deliver-method {
+  display: flex;
+  margin-top: 10rpx;
+}
+
+.location-mind {
+  height: 100rpx;
+  margin-top: 10rpx;
+  border-top: 2rpx solid #f2eeee;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.mind-label {
+  margin-left: 10rpx;
+}
+
+.location-line {
+  display: flex;
+  align-items: center;
+}
+
+.location-line image {
+  height: 40rpx;
+  width: 40rpx;
+}
+
+.deliver-time {
+  display: flex;
+  border-top: 2rpx solid #f2eeee;
+  width: 710rpx;
+  height: 50rpx;
+  margin-top: 10rpx;
+  align-items: center;
+  padding: 20rpx;
+  justify-content: space-between;
+}
+
+.time-picker {
+  border-radius: 5rpx;
+  border: 2rpx solid #f2eeee;
+  padding: 10rpx;
+  height: 40rpx;
+}
+
+.remark-section {
+  border-top: 2rpx solid #f2eeee;
+  width: 100%;
+  height: 55rpx;
+  background-color: white;
+  display: flex;
+  align-items: center;
+}
+
+.remark-section text {
+  font-size: 30rpx;
+  margin-left: 30rpx;
+}
+
+.remark-section input {
+  font-size: 25rpx;
+  margin-left: 20rpx;
+  width: 80%;
+}
+
+.price-section text {
+  font-size: 30rpx;
+}
+
+.price-section .price {
+  color: red;
+}
+
+.commit-section {
+  border-top: 2rpx solid #f2eeee;
+  position: fixed;
+  bottom: 0;
+  z-index: 1;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.commit-section text {
+  color: red;
+  font-size: 30rpx;
+  margin-left: 250rpx;
+}
+
+.commit-section button {
+  margin-right: 0;
+  border-radius: 0;
+}

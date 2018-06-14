@@ -1,0 +1,75 @@
+page {
+  background-color: #f2eeee;
+}
+
+.wrap-view {
+  width: 100%;
+  border-bottom: 10rpx solid #f2eeee;
+}
+
+.star-section {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 200rpx;
+  background-color: white;
+  margin-top: 2rpx;
+}
+
+.img-box {
+  width: 150rpx;
+  height: 150rpx;
+  margin-left: 10rpx;
+}
+
+.star-right {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20rpx;
+  font-size: 30rpx;
+  height: 150rpx;
+  width: 70%;
+  align-items: center;
+}
+
+.multi-rate {
+  margin-top: 20rpx;
+}
+
+.comment-area {
+  width: 730rpx;
+  height: 300rpx;
+  padding: 10rpx;
+  font-size: 30rpx;
+  background-color: white;
+  margin-top: 6rpx;
+}
+
+.remain-count {
+  position: absolute;
+  right: 10rpx;
+  bottom: 10rpx;
+  color: grey;
+}
+
+.manipulate-section {
+  position: fixed;
+  width: 100%;
+  height: 100rpx;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+  bottom: 0;
+  border-top:2rpx solid #f2eeee;
+}
+
+.cancel-btn {
+  border-radius: 0;
+  margin-left: 0;
+}
+
+.commit-btn {
+  border-radius: 0;
+  margin-right: 0;
+}

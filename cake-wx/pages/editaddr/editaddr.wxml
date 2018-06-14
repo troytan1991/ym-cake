@@ -1,0 +1,25 @@
+<view class="content-section">
+  <view class='item-view'>
+    <label>收货人: </label>
+    <input bindinput='onReceiverInput' value='{{addr.receiver}}' />
+  </view>
+  <view class='item-view'>
+    <label>联系方式:</label>
+    <input bindinput='onContactInput' type='number' maxlength='17' value='{{addr.phone}}' />
+  </view>
+  <view class='area-view item-view'>
+    <label>所在地区:</label>
+    <picker mode="multiSelector" bindcolumnchange="onColumnChange" range='{{areas}}' value="{{indexArray}}" range-key='name'>{{areas[0][indexArray[0]].name+areas[1][indexArray[1]].name+areas[2][indexArray[2]].name}}</picker>
+    <view class='navigator-arrow'></view>
+  </view>
+  <view class='detail-view'>
+    <label>详细地址:</label>
+    <textarea bindinput='onDetailInput' class='detail-text' maxlength='100' placeholder='街道、楼牌号等' value='{{addr.detail}}'></textarea>
+  </view>
+  <view class='default-view  item-view'>
+    <label>设为默认地址</label>
+    <switch checked='{{addr.isDefault}}' bindchange='onSwitchChange'></switch>
+  </view>
+</view>
+
+<button class='save-btn' bindtap='onSaveTap' size='middle' type='warn'>保存并使用</button>

@@ -1,0 +1,67 @@
+.content-section {
+  display: flex;
+  flex-direction: column;
+  font-size: 30rpx;
+  width: 100%;
+}
+
+.item-view {
+  display: flex;
+  align-items: center;
+  height: 100rpx;
+  border-top: 2rpx solid #f2eeee;
+  padding: 0 10rpx;
+}
+
+.content-section label {
+  margin-right: 10rpx;
+}
+
+.content-section input {
+  width: 500rpx;
+}
+
+.default-view {
+  justify-content: space-between;
+  border-bottom: 2rpx solid #f2eeee;
+}
+
+.navigator-arrow {
+  position: absolute;
+  right: 10rpx;
+}
+
+.navigator-arrow:after {
+  content: " ";
+  display: inline-block;
+  height: 18rpx;
+  width: 18rpx;
+  border-width: 2rpx 2rpx 0 0;
+  border-color: #888;
+  border-style: solid;
+  transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+  position: absolute;
+  top: 50%;
+  margin-top: -8rpx;
+  right: 28rpx;
+}
+
+.detail-view {
+  border-top: 2rpx solid #f2eeee;
+  padding-left: 10rpx;
+  padding-top: 20rpx;
+}
+
+.detail-text {
+  height: 200rpx;
+  margin-top: 10rpx;
+  width: 90%;
+}
+
+.save-btn {
+  position: fixed;
+  bottom: 20rpx;
+  left: 10%;
+  border-radius: 0;
+  width: 80%;
+}

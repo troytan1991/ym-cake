@@ -1,0 +1,82 @@
+.star.mini, .star-o.mini {
+  width: 0;
+  height: 0;
+  color: red;
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 5px solid red;
+  transform: rotate(180deg);
+  margin: 0 5px;
+}
+
+.star.mini::after, .star.mini::before, .star-o.mini::after, .star-o.mini::before {
+  content: '';
+  width: 0;
+  height: 0;
+  color: red;
+  position: absolute;
+  display: inline-block;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 5px solid red;
+  top: 0;
+  left: -6px;
+}
+
+.star.middle, .star-o.middle {
+  width: 0;
+  height: 0;
+  color: red;
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-bottom: 10px solid red;
+  transform: rotate(180deg);
+  margin: 0 5px;
+}
+
+.star.middle::after, .star.middle::before, .star-o.middle::after,
+.star-o.middle::before {
+  content: '';
+  width: 0;
+  height: 0;
+  color: red;
+  position: absolute;
+  display: inline-block;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-bottom: 10px solid red;
+  top: 0;
+  left: -12px;
+}
+
+.star::after, .star-o::after {
+  content: '';
+  transform: rotate(-68deg);
+}
+
+.star::before, .star-o::before {
+  content: '';
+  transform: rotate(68deg);
+}
+
+.star-o.mini {
+  border-bottom: 5px solid #ccc;
+}
+
+.star-o.mini::after, .star-o.mini::before {
+  border-bottom: 5px solid #ccc;
+}
+
+.star-o.middle {
+  border-bottom: 10px solid #ccc;
+}
+
+.star-o.middle::after, .star-o.middle::before {
+  border-bottom: 10px solid #ccc;
+}

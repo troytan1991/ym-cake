@@ -1,0 +1,15 @@
+<scroll-view class='product-container' scroll-y="true">
+  <view wx:for="{{products}}" wx:key="productId" class='product-item'>
+    <view class='image-box'>
+      <image src='{{item.imgUrl}}' />
+    </view>
+    <view class='info-box'>
+      <view class='info-title'>{{item.title}}</view>
+      <view class='info-detail'>{{item.description}}</view>
+      <view class='price-box'>
+        <text class='price'>￥{{item.price}}</text>
+        <text class='count'>x{{item.count}}</text>
+      </view>
+    </view>
+  </view>
+</scroll-view>

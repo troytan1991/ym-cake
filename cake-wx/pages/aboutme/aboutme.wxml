@@ -1,0 +1,64 @@
+<view class="user-backgroud">
+  <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+  <block wx:else>
+    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+  </block>
+</view>
+<view class='section2'>
+  <navigator class='navigator' url="/pages/orderhistory/orderhistory?status=-1">
+    <image src='../../image/order.png'></image>
+    <view class='navigator-text'>我的订单</view>
+    <view class='text-right'>查看全部订单</view>
+    <view class='navigator-arrow'></view>
+  </navigator>
+  <view class='status-info'>
+    <view bindtap='onStatusTap' data-status='1'>
+      <view class='badge' style="visibility: {{orderCount.statusNew>0?'':'hidden'}}">{{orderCount.statusNew}}</view>
+      <image src='../../image/unpaid.png'></image>
+      <text>待付款</text>
+    </view>
+    <view bindtap='onStatusTap' data-status='10'>
+      <view class='badge' style="visibility: {{orderCount.statusPay>0?'':'hidden'}}">{{orderCount.statusPay}}</view>
+      <image src='../../image/pending_delivery.png'></image>
+      <text>待发货</text>
+    </view>
+    <view bindtap='onStatusTap' data-status='50'>
+      <view class='badge' style="visibility: {{orderCount.statusDelivery>0?'':'hidden'}}">{{orderCount.statusDelivery}}</view>
+      <image src='../../image/delivering.png'></image>
+      <text>待收货</text>
+    </view>
+    <view bindtap='onStatusTap' data-status='90'>
+      <view class='badge' style="visibility: {{orderCount.statusReceive>0?'':'hidden'}}">{{orderCount.statusReceive}}</view>
+      <image src='../../image/evaluating.png'></image>
+      <text>待评价</text>
+    </view>
+  </view>
+</view>
+<view class='section3'>
+  <navigator bindtap='onCouponTap' class='navigator'>
+    <image src='../../image/coupon.png'></image>
+    <view class='navigator-text'>我的优惠券</view>
+    <view class='navigator-arrow'></view>
+  </navigator>
+  <view bindtap='onSettingTap' class='navigator'>
+    <image src='../../image/setup.png'></image>
+    <view class='navigator-text'>设置</view>
+    <view class='navigator-arrow'></view>
+  </view>
+  <navigator bindtap='onFeedbackTap' class='navigator'>
+    <image src='../../image/feedback.png'></image>
+    <view class='navigator-text'>意见反馈</view>
+    <view class='navigator-arrow'></view>
+  </navigator>
+  <view type='contact' class='navigator'>
+    <image src='../../image/contact_service.png'></image>
+    <view class='navigator-text'>联系客服</view>
+    <contact-button class='center' size="30" session-from="weapp"></contact-button>
+    <view class='navigator-arrow'></view>
+    <contact-button class='right' size="30" session-from="weapp"></contact-button>
+  </view>
+</view>
+<view class="version-info ">
+  <text>版本:1.0.0</text>
+</view>

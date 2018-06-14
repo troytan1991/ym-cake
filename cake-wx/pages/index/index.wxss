@@ -1,0 +1,104 @@
+page {
+  background-color: #f2eeee;
+}
+
+.section1 {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  height: 520rpx;
+}
+
+.search-box {
+  position: fixed;
+  z-index: 1;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  border: 1px solid #d0d0d0;
+  border-radius: 10rpx;
+  margin: 0 10rpx;
+  align-items: center;
+  width: 96%;
+  height: 60rpx;
+}
+
+.search-box icon {
+  margin: 0 10rpx;
+}
+
+.search-box input {
+  font-size: 30rpx;
+}
+
+.show-swiper {
+  margin-top: 75rpx;
+  width: 750rpx;
+  height: 420rpx;
+}
+
+.show-swiper image {
+  height: 100%;
+  width: 100%;
+}
+
+.list-item {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.cake-item {
+  margin-top: 10rpx;
+  width: 370rpx;
+  height: 400rpx;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cake-item-right {
+  margin-left: 10rpx;
+}
+
+.cake-item text {
+  margin-top: 20rpx;
+  font-size: 28rpx;
+  font-family: "微软雅黑";
+}
+
+.item-image {
+  width: 250rpx;
+  height: 250rpx;
+  margin-top: 10rpx;
+}
+
+.product-container {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.product-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 370rpx;
+  height: 400rpx;
+  margin-top: 10rpx;
+  background-color: white;
+}
+
+.product-item text {
+  margin-top: 20rpx;
+  font-size: 28rpx;
+  font-family: "微软雅黑";
+}
+
+.product-item image {
+  width: 250rpx;
+  height: 250rpx;
+  margin-top: 10rpx;
+}

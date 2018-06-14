@@ -1,0 +1,45 @@
+<view class="title-section">
+  <view bindtap='onTitleTap' data-status='-1' class="font-grey {{selectedId == -1?'title-selected':''}}">全部</view>
+  <view bindtap='onTitleTap' data-status='1' class="font-grey {{selectedId == 1?'title-selected':''}}">待付款</view>
+  <view bindtap='onTitleTap' data-status='10' class="font-grey {{selectedId == 10?'title-selected':''}}">待发货</view>
+  <view bindtap='onTitleTap' data-status='50' class="font-grey {{selectedId == 50?'title-selected':''}}">待收货</view>
+  <view bindtap='onTitleTap' data-status='90' class="font-grey {{selectedId == 90?'title-selected':''}}">待评价</view>
+</view>
+<scroll-view scroll-y="true" class='body-section'>
+  <view class='order-item' wx:for="{{orders}}" wx:key="orderId">
+    <view class='status-item'>
+      <text class='font-grey'>{{item.createdOn}}</text>
+      <text class='font-red'>{{item.statusStr}}</text>
+    </view>
+    <view wx:for="{{item.productList}}" wx:key="sizeId" wx:for-item="product" class='product-item'>
+      <image src='{{product.imgUrl}}' />
+      <view class='info-box'>
+        <view class='info-title'>{{product.name}}</view>
+        <view class='info-detail'>{{product.sizeDescription}}</view>
+        <view class='price-box'>
+          <text class='price'>￥{{product.price}}</text>
+          <text class='count'>x{{product.count}}</text>
+        </view>
+      </view>
+    </view>
+    <view class='order-info'>共{{item.productList.length}}件商品 合计:￥{{item.price}}(含运费 ￥{{item.deliveryFee}})</view>
+    <view class='order-btn'>
+      <block wx:if='{{item.status == 1}}'>
+        <view bindtap='onCancelTap' class='common-btn' id='{{item.orderId}}'>取消订单</view>
+        <view bindtap='onPayTap' class='key-btn' id='{{item.orderId}}'>付款</view>
+      </block>
+      <block wx:elif='{{item.status == 10}}'>
+        <view bindtap='onCancelTap' class='common-btn' id='{{item.orderId}}'>取消订单</view>
+        <view bindtap='onRemindTap' class="{{item.remind?'common-btn':'key-btn'}}" style="pointer-events:{{item.remind?'none':''}}" id='{{item.orderId}}'>催单</view>
+      </block>
+      <block wx:elif='{{item.status == 50}}'>
+        <view bindtap='onDeliveryTap' class='common-btn' id='{{item.deliveryId}}'>查看物流</view>
+        <view bindtap='onReceiveTap' class='key-btn' id='{{item.orderId}}'>确认收货</view>
+      </block>
+      <block wx:elif='{{item.status == 90}}'>
+        <view bindtap='onCommentTap' class='key-btn' id='{{item.orderId}}' data-products="{{item.productList}}">评价</view>
+      </block>
+      <view wx:else bindtap='onDeleteTap' class='common-btn' id='{{item.orderId}}'>删除订单</view>
+    </view>
+  </view>
+</scroll-view>

@@ -1,0 +1,7 @@
+{
+  "backgroundColor": "#f2eeee",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "multiple-rate": "/pages/multiple-rate/multiple-rate"
+  }
+}

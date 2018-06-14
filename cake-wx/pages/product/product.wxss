@@ -1,0 +1,431 @@
+page {
+  background-color: #f2eeee;
+}
+
+.title-section {
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+  background-color: white;
+}
+
+.title-selected {
+  color: red;
+  border-bottom: 4rpx solid red;
+}
+
+.product-title {
+  margin-right: 70rpx;
+}
+
+.comment-title {
+  margin-left: 70rpx;
+}
+
+.body-section {
+  height: 1046rpx;
+  width: 100%;
+  margin-top: 55rpx;
+  z-index: 0;
+}
+
+.item-scroll {
+  width: 100%;
+  height: 100%;
+}
+
+.product-item {
+  width: 100%;
+  height: 100%;
+}
+
+.product-swiper {
+  width: 100%;
+  height: 550rpx;
+}
+
+.product-swiper image {
+  width: 100%;
+  height: 100%;
+}
+
+.detail-item {
+  background-color: white;
+  width: 100%;
+  height: 100%;
+}
+
+.comment-item {
+  background-color: white;
+  width: 100%;
+  height: 100%;
+}
+
+.order-section {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  background-color: white;
+  z-index: 1;
+  border-top: 2rpx solid #f2eeee;
+  height: 86rpx;
+}
+
+.shopcart-img {
+  width: 350rpx;
+  margin-top: 10rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.badge {
+  position: absolute;
+  left: 182rpx;
+  min-width: 30rpx;
+  border-radius: 18rpx;
+  background-color: red;
+  color: white;
+  text-align: center;
+  font-size: 22rpx;
+}
+
+.shopcart-img image {
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.shopcart-img text {
+  font-size: 20rpx;
+}
+
+.order-section button {
+  position: absolute;
+  right: 0;
+  border-radius: 0;
+  width: 350rpx;
+  height: 100%;
+}
+
+.place-section {
+  position: fixed;
+  height: 1200rpx;
+  width: 100%;
+  bottom: -1200rpx;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+}
+
+.shade-section {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: black;
+  opacity: 0;
+  height: 1200rpx;
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+.blank-place {
+  width: 100%;
+  height: 320rpx;
+}
+
+.title-place {
+  width: 100%;
+  height: 200rpx;
+  background-color: white;
+  border-bottom: 2rpx solid #f2eeee;
+  display: flex;
+}
+
+.classify-place {
+  height: 598rpx;
+  width: 100%;
+  background-color: white;
+}
+
+.comfirm-btn {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  border-radius: 0;
+  background-color: white;
+  opacity: 1;
+}
+
+.place-img {
+  background-color: white;
+  margin-left: 20rpx;
+  position: relative;
+  top: -40rpx;
+  width: 200rpx;
+  height: 210rpx;
+  border: 1rpx solid #f2eeee;
+  border-radius: 10rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.place-img image {
+  width: 180rpx;
+  height: 180rpx;
+}
+
+.place-detail {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  margin-left: 30rpx;
+  height: 90%;
+}
+
+.place-price {
+  color: red;
+}
+
+.place-no {
+  color: grey;
+  font-size: 30rpx;
+}
+
+.classify-place>text {
+  margin-left: 20rpx;
+}
+
+.size-section {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.product-size {
+  width: 330rpx;
+  height: 60rpx;
+  border: 2rpx solid grey;
+  border-radius: 10rpx;
+  color: grey;
+  text-align: center;
+  line-height: 60rpx;
+  margin: 10rpx 20rpx;
+  font-size: 25rpx;
+}
+
+.size-selected {
+  color: red;
+  border: 2rpx solid red;
+}
+
+.count-section {
+  display: flex;
+  padding: 20rpx;
+}
+
+.operate-section {
+  display: flex;
+  background-color: #f2eeee;
+  position: absolute;
+  right: 20rpx;
+  width: 160rpx;
+  align-items: center;
+}
+
+.operate-section view {
+  width: 50rpx;
+  height: 50rpx;
+  border: 2rpx solid grey;
+  border-radius: 10rpx;
+  color: grey;
+  text-align: center;
+  line-height: 50rpx;
+  background-color: white;
+}
+
+.operate-section text {
+  width: 60rpx;
+  text-align: center;
+  line-height: 50rpx;
+}
+
+.product-info {
+  display: flex;
+  flex-direction: column;
+  padding: 20rpx;
+  background-color: white;
+  width: 100%;
+}
+
+.info-title {
+  font-size: 40rpx;
+  font-weight: bold;
+}
+
+.info-desc {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: grey;
+}
+
+.price-detail {
+  display: flex;
+  align-items: center;
+  margin-top: 30rpx;
+}
+
+.price-detail text {
+  color: red;
+  font-size: 35rpx;
+}
+
+.price-detail view {
+  font-size: 25rpx;
+  margin-left: 20rpx;
+  background-color: darkkhaki;
+  color: white;
+  border-radius: 8rpx;
+  padding: 10rpx;
+}
+
+.choose-style {
+  display: flex;
+  width: 100%;
+  height: 50rpx;
+  background-color: white;
+  margin-top: 20rpx;
+  padding: 20rpx;
+  align-items: center;
+}
+
+.choose-label {
+  font-size: 30rpx;
+  color: grey;
+}
+
+.choose-size {
+  font-size: 35rpx;
+  margin-left: 20rpx;
+}
+
+.choose-nav {
+  font-size: 40rpx;
+  position: absolute;
+  right: 10rpx;
+  color: grey;
+}
+
+.slogan-section {
+  width: 100%;
+  height: 130rpx;
+  margin-top: 20rpx;
+  display: flex;
+  align-items: center;
+  padding: 0 20rpx;
+  background-color: white;
+}
+
+.slogan-section image {
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.slogan-box {
+  height: 100%;
+  margin-left: 20rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.slogan-title {
+  font-size: 30rpx;
+}
+
+.slogan-body {
+  font-size: 25rpx;
+  color: grey;
+}
+
+.comment-box {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 20rpx;
+  border-bottom: 2rpx solid #f2eeee;
+}
+
+.purchaser-info {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+
+.purchaser-info image {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 20rpx;
+}
+
+.purchaser-name {
+  font-size: 25rpx;
+}
+
+.comment-date {
+  position: absolute;
+  right: 20rpx;
+  color: grey;
+  font-size: 25rpx;
+}
+
+.comment-body {
+  font-size: 30rpx;
+  color: black;
+  margin-bottom: 20rpx;
+}
+
+.buy-size {
+  font-size: 25rpx;
+  color: grey;
+}
+
+.buy-date {
+  font-size: 25rpx;
+  color: grey;
+  margin-top: 10rpx;
+}
+
+.detail-scroll {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.detail-scroll image {
+  width: 100%;
+}
+
+.close-btn {
+  border: 2rpx solid #f2eeee;
+  position: absolute;
+  right: 0;
+  top: 1;
+  font-size: 40rpx;
+  width: 60rpx;
+  text-align: center;
+  color: grey;
+}

@@ -1,0 +1,20 @@
+<view class='section1'>
+  <view class='search-box'>
+    <icon size='20' type='search'></icon>
+    <input placeholder='输入搜索' value="{{seachvalue}}"></input>
+  </view>
+  <swiper class='show-swiper' indicator-dots='true' autoplay='true' interval='3000' duration='1000'>
+    <block wx:for="{{imgUrls}}" wx:key="imgUrl">
+      <swiper-item>
+        <image src="{{item}}" class='slide-image'></image>
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
+<view class='product-container'>
+  <view wx:for="{{products}}" wx:key="productId" id='{{item.productId}}' class='product-item' bindtap='onProductTap'>
+    <image src='{{item.imgUrl}}'></image>
+    <text>{{item.name}}</text>
+    <text>￥{{item.price}}</text>
+  </view>
+</view>

@@ -1,0 +1,19 @@
+<scroll-view class="addr-container" scroll-y="true" style='height: {{scrollHeight}}px'>
+  <view wx:for="{{addrs}}" wx:key="id" class='addr-item' id='{{item.addrId}}'>
+    <view bindtap='onAddrTap' data-item='{{item}}' class="user-info {{item.addrId == selectedId?'selected':''}}">
+      <text>{{item.receiver}}</text>
+      <text>{{item.phone}}</text>
+      <view wx:if="{{item.isDefault}}" class='default-text'>默认</view>
+      <icon wx:if="{{item.addrId == selectedId}}" class='icon-small' size='25' type='success_no_circle'></icon>
+    </view>
+    <view class='addr-info'>
+      <text>{{item.areaStr+" "+item.detail}}</text>
+      <view class='addr-edit'>
+        <image bindtap='onEditTap' data-addr='{{item}}' src='/image/edit.png' />
+      </view>
+    </view>
+  </view>
+</scroll-view>
+<view class='add-section'>
+  <button class='add-btn' type='warn' bindtap='onAddTap'>新建地址</button>
+</view>

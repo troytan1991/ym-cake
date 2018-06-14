@@ -1,0 +1,80 @@
+<view class="addr-section">
+  <navigator url="/pages/addr/addr?selectedId={{addr.addrId}}" class='addr-navigator'>
+    <view wx:if="{{addr}}" class='info-container'>
+      <view class='user-info'>
+        <text>{{addr.receiver}}</text>
+        <text>{{addr.phone}}</text>
+      </view>
+      <view class='addr-info'>
+        <image src='/image/map.png'></image>
+        <text>{{addr.areaStr+addr.detail}}</text>
+      </view>
+    </view>
+    <view wx:else class='addr-remind'>
+      请添加收货地址
+    </view>
+    <view class='navigator-arrow'></view>
+  </navigator>
+</view>
+<view class='product-section'>
+  <navigator class='product-nav' url='/pages/orderdetail/orderdetail?products={{products}}'>
+    <scroll-view class='product-scroll' scroll-x="true">
+      <image wx:for="{{products}}" wx:key="id" src='{{item.imgUrl}}'></image>
+    </scroll-view>
+    <text>共{{products.length}}件</text>
+    <view class='navigator-arrow'></view>
+  </navigator>
+</view>
+<view class="pay-section">
+  <view class='pay-title'>
+    <image src='/image/coupon.png'></image>
+    <text>支付方式</text>
+  </view>
+  <view class='pay-method'>
+    <view bindtap='onOnlineTap' class='frame disable'>在线支付</view>
+    <view bindtap='onCashTap' class='frame selected'>货到付款</view>
+  </view>
+</view>
+<view class='deliver-section'>
+  <view class='deliver-title'>
+    <image src='/image/delivery-fee.png'></image>
+    <text>配送方式</text>
+  </view>
+  <view class='deliver-method'>
+    <view bindtap='onDeliverTap' class="frame {{deliverMethod==0?'selected':''}}">专人配送</view>
+    <view bindtap='onPickTap' class="frame {{deliverMethod==1?'selected':''}}">上门自提</view>
+  </view>
+  <view wx:if="{{deliverMethod==1}}" class='location-mind'>
+    <text class="mind-label">自提门店:</text>
+    <view class='location-line'>
+      <image src='/image/map.png'></image>
+      <text class='mind-detail'>上海市浦东新区榕桥路南1号门</text>
+    </view>
+  </view>
+  <view class='deliver-time'>
+    <text>{{deliverMethod==0?'送达时间':'提货时间'}}</text>
+    <picker class='time-picker' bindchange='onPickerChange' mode="multiSelector" range='{{dataArray}}' value='{{index}}' range-key='rangeKey'>
+      <view>{{dataArray[0][index[0]].rangeKey}},{{dataArray[1][index[1]].rangeKey}}</view>
+    </picker>
+  </view>
+</view>
+<view class='remark-section'>
+  <text>备注:</text>
+  <input bindinput='onRemarkInput' maxlength='30'></input>
+</view>
+
+<view class='price-section'>
+  <view>
+    <text>商品金额</text>
+    <text class='price'>￥{{price}}</text>
+  </view>
+  <view>
+    <text>运费</text>
+    <text class='price'>￥{{freight}}</text>
+  </view>
+</view>
+
+<view class='commit-section'>
+  <text>实付款:￥{{totalPrice}}</text>
+  <button class='commit-btn' bindtap='onCommitTap' type='warn' size='middle'>提交订单</button>
+</view>

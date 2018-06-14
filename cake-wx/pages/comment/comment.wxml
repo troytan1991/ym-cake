@@ -1,0 +1,16 @@
+<view class='wrap-view' wx:for="{{products}}" wx:key="{{productId}}">
+  <view class="star-section">
+    <image class='img-box' src='{{item.imgUrl}}'></image>
+    <view class='star-right'>
+      <text>商品评分</text>
+      <multiple-rate bindchange="onRateChange" data-id="{{index}}"  icon="star" rate="5" size="middle"></multiple-rate>
+    </view>
+  </view>
+  <textarea bindinput='onCommentInput' data-id="{{index}}" class='comment-area' placeholder='请输入您真诚的评价' maxlength='500'>
+    <text class='remain-count'>{{comments[index].remainCount}}</text>
+  </textarea>
+</view>
+<view class='manipulate-section'>
+  <button bindtap='onCancelTap' class='cancel-btn' type='default'>取消</button>
+  <button bindtap='onCommitTap' class='commit-btn' type='warn'>提交</button>
+</view>
