@@ -31,7 +31,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public Long getCurrentUser() {
         return userHolder.get();
-//        return 1L;
     }
 
     /**

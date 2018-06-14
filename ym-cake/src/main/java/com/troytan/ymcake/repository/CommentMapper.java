@@ -3,7 +3,6 @@ package com.troytan.ymcake.repository;
 import java.util.List;
 
 import com.troytan.ymcake.domain.Comment;
-import com.troytan.ymcake.dto.CommentDto;
 import com.troytan.ymcake.vo.CommentVo;
 
 public interface CommentMapper {

@@ -54,8 +54,9 @@ public class OrderServiceImpl implements OrderService {
         // 新增tt_delivery记录
         Delivery delivery = new Delivery();
         delivery.setAddrId(orderDto.getAddrId());
-        delivery.setReceiveTime(orderDto.getReceiveTime());
-        delivery.setType(orderDto.getType());
+        delivery.setDeliverDate(orderDto.getDeliverDate());
+        delivery.setDeliverMethod(orderDto.getDeliverMethod());
+        delivery.setDeliverTime(orderDto.getDeliverTime());
         deliveryMapper.insert(delivery);
 
         // 新增tt_order记录
@@ -63,9 +64,11 @@ public class OrderServiceImpl implements OrderService {
         Order order = new Order();
         order.setDeliveryId(delivery.getDeliveryId());
         order.setPrice(countPrice(productOrders));
-        order.setDeliveryFee(new BigDecimal(order.getPrice().intValue() > 200 ? 0 : 10));
-        order.setStatus(DomainConst.STATUS_NEW);
-        order.setCreatedBy("admin");
+        order.setDeliveryFee(new BigDecimal(0));
+        order.setPayMethod(orderDto.getPayMethod());
+        order.setRemark(orderDto.getRemark());
+        order.setStatus(DomainConst.STATUS_PAY);
+        order.setCreatedBy(userService.getCurrentUser().toString());
         order.setUserId(userService.getCurrentUser());
 
         orderMapper.insert(order);
