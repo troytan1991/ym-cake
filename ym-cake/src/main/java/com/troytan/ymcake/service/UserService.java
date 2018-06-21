@@ -14,4 +14,6 @@ public interface UserService {
     String logUser(OauthDto oauthDto, UserVo userVo) throws NoSuchAlgorithmException;
 
     Long checkSessionId(String sessionId);
+
+    Short getUserRole();
 }

@@ -81,4 +81,9 @@ public class UserServiceImpl implements UserService {
         return map.get(sessionId);
     }
 
+    @Override
+    public Short getUserRole() {
+        return userMapper.getRole(getCurrentUser());
+    }
+
 }

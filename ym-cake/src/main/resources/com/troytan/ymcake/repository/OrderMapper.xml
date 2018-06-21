@@ -92,10 +92,15 @@
   </update>
   <resultMap id="OrderVoResultMap" type="com.troytan.ymcake.vo.OrderVo">
     <id column="ORDER_ID" jdbcType="INTEGER" property="orderId" />
-    <result column="created_on" jdbcType="TIMESTAMP" property="createdOn" />
     <result column="status" jdbcType="SMALLINT" property="status" />
+    <result column="created_on" jdbcType="TIMESTAMP" property="createdOn" />
+    <result column="pay_method" jdbcType="SMALLINT" property="payMethod" />
+    <result column="deliver_method" jdbcType="SMALLINT" property="deliverMethod" />
+    <result column="delivery_no" jdbcType="VARCHAR" property="deliveryNo" />
+    <result column="location" jdbcType="VARCHAR" property="location" />
+    <result column="receiver" jdbcType="VARCHAR" property="receiver" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
     <result column="price" jdbcType="DECIMAL" property="price" />
-    <result column="DELIVERY_ID" jdbcType="INTEGER" property="deliveryId" />
     <result column="delivery_fee" jdbcType="DECIMAL" property="deliveryFee" />
     <collection ofType="com.troytan.ymcake.vo.OrderProductVo" property="productList">
         <result column="PRODUCT_ID" jdbcType="DECIMAL" property="productId" />
@@ -104,23 +109,31 @@
         <result column="product_price" jdbcType="DECIMAL" property="price" />
         <result column="name" jdbcType="VARCHAR" property="name" />
         <result column="img_url" jdbcType="VARCHAR" property="imgUrl" />
+        <result column="product_str" jdbcType="VARCHAR" property="productStr" />
     </collection>
   </resultMap>
-  <select id="selectByStatus" resultMap="OrderVoResultMap">
-	select ord.ORDER_ID,ord.created_on,ord.status,ord.price,ord.DELIVERY_ID,ord.delivery_fee,
-        pord.PRODUCT_ID, pord.count,
-        size.description, size.price as product_price,
-        product.name,product.img_url    
-    from owcake.tt_order ord
-        left join tr_product_order pord on pord.ORDER_ID = ord.ORDER_ID
-        left join tt_product product on product.PRODUCT_ID = pord.PRODUCT_ID
-        left join tt_size size on size.SIZE_ID = pord.SIZE_ID
+  <select id="listByStatus" resultMap="OrderVoResultMap">
+	select o.order_id, o.created_on, o.pay_method, o.status,o.price,o.remark,o.delivery_fee,
+	    d.deliver_method, d.delivery_no,concat(a.area_str,a.detail) as location,
+	    concat_ws(' ',a.receiver,a.phone) as receiver,
+	    po.PRODUCT_ID,po.count,
+	    s.description,s.price as product_price,
+	    p.name, p.img_url,
+	    concat_ws(' ',p.name,left(s.description,4),'x',po.count) as product_str
+	from tt_order o
+	left join tt_delivery d on d.DELIVERY_ID=o.DELIVERY_ID
+	left join tt_addr a on a.addr_id = d.ADDR_ID
+	left join tr_product_order po on po.ORDER_ID = o.ORDER_ID
+	left join tt_product p on p.PRODUCT_ID=po.PRODUCT_ID
+	left join tt_size s on s.size_id = po.size_id
 	where 
 	    <if test="status != -1">
-	       ord.status=#{status, jdbcType=SMALLINT} and
+	       o.status=#{status, jdbcType=SMALLINT} and
 	    </if> 
-	    ord.USER_ID =#{userId, jdbcType=DECIMAL} and
-	    ord.status != 200
+	    <if test="userId !=null">
+	       o.USER_ID =#{userId, jdbcType=DECIMAL} and
+	    </if>
+	    o.status != 200
 	order by created_on desc
   </select>
   <select id="countOrderGroupByStatus" resultType="com.troytan.ymcake.dto.OrderCountDto">
@@ -130,4 +143,5 @@
 	  status != 200
 	group by status
   </select>
+  
 </mapper>

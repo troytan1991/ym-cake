@@ -9,13 +9,18 @@ import com.troytan.ymcake.domain.DomainConst;
 public class OrderVo {
 
     private Long                 orderId;
-    private Date                 createdOn;
     private Short                status;
     private String               statusStr;
-    private List<OrderProductVo> productList;
+    private Date                 createdOn;
+    private Short                payMethod;
+    private Short                deliverMethod;
+    private String                deliveryNo;
+    private String               location;
+    private String               receiver;
+    private String               remark;
     private BigDecimal           price;
-    private Long                 deliveryId;
     private BigDecimal           deliveryFee;
+    private List<OrderProductVo> productList;
 
     public Long getOrderId() {
         return orderId;
@@ -57,12 +62,44 @@ public class OrderVo {
         this.price = price;
     }
 
-    public Long getDeliveryId() {
-        return deliveryId;
+    public Short getPayMethod() {
+        return payMethod;
     }
 
-    public void setDeliveryId(Long deliveryId) {
-        this.deliveryId = deliveryId;
+    public void setPayMethod(Short payMethod) {
+        this.payMethod = payMethod;
+    }
+
+    public Short getDeliverMethod() {
+        return deliverMethod;
+    }
+
+    public void setDeliverMethod(Short deliverMethod) {
+        this.deliverMethod = deliverMethod;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getReceiver() {
+        return receiver;
+    }
+
+    public void setReceiver(String receiver) {
+        this.receiver = receiver;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 
     public BigDecimal getDeliveryFee() {
@@ -96,6 +133,14 @@ public class OrderVo {
             statusStr = "已取消";
         }
 
+    }
+
+    public String getDeliveryNo() {
+        return deliveryNo;
+    }
+
+    public void setDeliveryNo(String deliveryNo) {
+        this.deliveryNo = deliveryNo;
     }
 
 }

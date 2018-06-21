@@ -10,6 +10,7 @@ import com.troytan.ymcake.domain.Addr;
 import com.troytan.ymcake.dto.AreaDto;
 import com.troytan.ymcake.repository.AddrMapper;
 import com.troytan.ymcake.repository.AreaMapper;
+import com.troytan.ymcake.util.MosaicUtils;
 
 @Service
 @Transactional
@@ -30,14 +31,21 @@ public class AddrServiceImpl implements AddrService {
 
     @Override
     public List<Addr> getAddrList() {
-
-        return addrMapper.selectByUserId(userService.getCurrentUser());
+        List<Addr> addrs = addrMapper.selectByUserId(userService.getCurrentUser());
+        // 模糊处理
+        for (Addr addr : addrs) {
+            addr.setPhone(MosaicUtils.phoneMosaic(addr.getPhone()));
+        }
+        return addrs;
     }
 
     @Override
     public Addr createAddr(Addr addr) {
         addr.setUserId(userService.getCurrentUser());
         addrMapper.insert(addr);
+        if (addr.getIsDefault()) {
+            addrMapper.updateDefaultById(addr.getAddrId());
+        }
         return addr;
     }
 
@@ -45,21 +53,18 @@ public class AddrServiceImpl implements AddrService {
     public Addr updateAddr(Addr addr) {
         addr.setUserId(userService.getCurrentUser());
         addrMapper.updateByPrimaryKey(addr);
+        if (addr.getIsDefault()) {
+            addrMapper.updateDefaultById(addr.getAddrId());
+        }
         return addr;
     }
 
     @Override
-    public void setDefault(Long addrId) {
-        // 清除默认
-        addrMapper.updateUndefault();
-        // 重新添加默认
-        addrMapper.updateDefaultById(addrId);
-    }
-
-    @Override
     public Addr getDefaultAddr() {
-
-        return addrMapper.selectDefaultByUserId(userService.getCurrentUser());
+        Addr addr = addrMapper.selectDefaultByUserId(userService.getCurrentUser());
+        // 脱敏处理
+        addr.setPhone(MosaicUtils.phoneMosaic(addr.getPhone()));
+        return addr;
     }
 
     @Override

@@ -15,8 +15,6 @@ public interface AddrService {
 
     Addr updateAddr(Addr addr);
 
-    void setDefault(Long addrId);
-
     Addr getDefaultAddr();
 
     List<AreaDto> getAreaList();

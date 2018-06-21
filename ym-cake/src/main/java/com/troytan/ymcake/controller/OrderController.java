@@ -88,6 +88,12 @@ public class OrderController {
         return orderService.getOrderList(status);
     }
 
+    @GET
+    @Path("/admin/{status}")
+    public List<OrderVo> getAdminOrders(@PathParam("status") Short status) {
+        return orderService.getAdminOrders(status);
+    }
+
     /**
      * 获取订单各状态数量信息
      *
@@ -111,7 +117,7 @@ public class OrderController {
     @POST
     @Path("/remind/{orderId}")
     public void remindOrder(@PathParam("orderId") Long orderId) {
-         
+
     }
 
     /**
@@ -124,7 +130,7 @@ public class OrderController {
     @POST
     @Path("/cancel/{orderId}")
     public void cancelOrder(@PathParam("orderId") Long orderId) {
-         orderService.cancelOrder(orderId);
+        orderService.cancelOrder(orderId);
     }
 
     /**

@@ -46,8 +46,6 @@ public interface AddrMapper {
 
     List<Addr> selectByUserId(Long currentUser);
 
-    void updateUndefault();
-
     void updateDefaultById(Long addrId);
 
     Addr selectDefaultByUserId(Long currentUser);

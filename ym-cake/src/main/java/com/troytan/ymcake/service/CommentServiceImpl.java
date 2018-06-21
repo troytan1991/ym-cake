@@ -11,6 +11,7 @@ import com.troytan.ymcake.domain.DomainConst;
 import com.troytan.ymcake.dto.CommentDto;
 import com.troytan.ymcake.repository.CommentMapper;
 import com.troytan.ymcake.repository.OrderMapper;
+import com.troytan.ymcake.util.MosaicUtils;
 import com.troytan.ymcake.vo.CommentVo;
 
 @Service
@@ -43,8 +44,12 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public List<CommentVo> getCommentList(Long productId) {
-
-        return commentMapper.listByProductId(productId);
+        List<CommentVo> list = commentMapper.listByProductId(productId);
+        // 脱敏处理
+        for (CommentVo commentVo : list) {
+            commentVo.setNickname(MosaicUtils.nameMosaic(commentVo.getNickname()));
+        }
+        return list;
     }
 
 }

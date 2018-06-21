@@ -28,4 +28,6 @@ public interface OrderService {
     void receiveOrder(Long orderId);
 
     void deleteOrder(Long orderId);
+
+    List<OrderVo> getAdminOrders(Short status);
 }

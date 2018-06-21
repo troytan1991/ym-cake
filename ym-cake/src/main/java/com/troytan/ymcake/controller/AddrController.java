@@ -70,19 +70,12 @@ public class AddrController {
         return addrService.updateAddr(addr);
     }
 
-    @POST
-    @Path("/setDefault/{addrId}")
-    public void setDefault(@PathParam("addrId") Long addrId) {
-        
-        addrService.setDefault(addrId);
-    }
-    
     @GET
     @Path("/getDefault")
     public Addr getDefaultAddr() {
         return addrService.getDefaultAddr();
     }
- 
+
     /**
      * 删除地址
      *
@@ -97,11 +90,11 @@ public class AddrController {
 
         return addrService.deleteAddr(addrId);
     }
-    
+
     @GET
     @Path("/areas")
     @NoAuth
-    public List<AreaDto> getAreas(){
+    public List<AreaDto> getAreas() {
         return addrService.getAreaList();
     }
 }

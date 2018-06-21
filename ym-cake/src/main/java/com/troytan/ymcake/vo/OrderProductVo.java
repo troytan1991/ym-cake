@@ -10,6 +10,7 @@ public class OrderProductVo {
     private String     sizeDescription;
     private BigDecimal price;
     private String     name;
+    private String     productStr;
 
     public Long getProductId() {
         return productId;
@@ -57,6 +58,14 @@ public class OrderProductVo {
 
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
+    }
+
+    public String getProductStr() {
+        return productStr;
+    }
+
+    public void setProductStr(String productStr) {
+        this.productStr = productStr;
     }
 
 }

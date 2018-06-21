@@ -87,4 +87,7 @@
     from tm_user
     where open_id = #{openId,jdbcType=VARCHAR}
   </select>
+  <select id="getRole" parameterType="Long" resultType="Short">
+    select role from tm_user where USER_ID = #{userId,jdbcType=INTEGER}
+  </select>
 </mapper>

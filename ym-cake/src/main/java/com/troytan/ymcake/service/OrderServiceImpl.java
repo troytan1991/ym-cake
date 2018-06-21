@@ -141,7 +141,29 @@ public class OrderServiceImpl implements OrderService {
      */
     @Override
     public List<OrderVo> getOrderList(Short status) {
-        List<OrderVo> list = orderMapper.selectByStatus(status, userService.getCurrentUser());
+        List<OrderVo> list = orderMapper.listByStatus(status, userService.getCurrentUser());
+        for (OrderVo orderVo : list) {
+            orderVo.mapToStatusStr();
+        }
+        return list;
+    }
+
+    /**
+     * 管理员获取的订单
+     *
+     * @author troytan
+     * @date 2018年6月15日
+     * @param status
+     * @return (non-Javadoc)
+     * @see com.troytan.ymcake.service.OrderService#getAdminOrders(java.lang.Short)
+     */
+    @Override
+    public List<OrderVo> getAdminOrders(Short status) {
+        if (userService.getUserRole() != 1) {
+            return null;
+        }
+
+        List<OrderVo> list = orderMapper.listByStatus(status, null);
         for (OrderVo orderVo : list) {
             orderVo.mapToStatusStr();
         }

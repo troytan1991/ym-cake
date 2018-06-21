@@ -90,13 +90,9 @@
     from tt_addr 
     where USER_ID=#{userId, jdbcType=DECIMAL}
   </select>
-  <update id="updateUndefault">
-    update tt_addr set IS_DEFAULT = false 
-    where IS_DEFAULT=true
-  </update>
   <update id="updateDefaultById">
-    update tt_addr set IS_DEFAULT=true
-    where ADDR_ID=#{addrId, jdbcType=DECIMAL}
+    update tt_addr set IS_DEFAULT= false
+    where ADDR_ID != #{addrId, jdbcType=DECIMAL}
   </update>
   <select id="selectDefaultByUserId" resultMap="BaseResultMap">
     select ADDR_ID, receiver, phone, detail, created_on, created_by, updated_on, updated_by, 

@@ -46,7 +46,7 @@ public interface OrderMapper {
 
     void updateStatusById(@Param("orderId") Long orderId, @Param("status") Short status);
 
-    List<OrderVo> selectByStatus(@Param("status") Short status, @Param("userId") Long userId);
+    List<OrderVo> listByStatus(@Param("status") Short status, @Param("userId") Long userId);
 
     List<OrderCountDto> countOrderGroupByStatus(Long currentUser);
 }
