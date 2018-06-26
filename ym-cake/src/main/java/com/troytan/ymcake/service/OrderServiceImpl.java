@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.github.pagehelper.Page;
 import com.troytan.ymcake.domain.Delivery;
 import com.troytan.ymcake.domain.DomainConst;
 import com.troytan.ymcake.domain.Order;
@@ -140,8 +141,8 @@ public class OrderServiceImpl implements OrderService {
      * @see com.troytan.ymcake.service.OrderService#getOrderList(java.lang.Short)
      */
     @Override
-    public List<OrderVo> getOrderList(Short status) {
-        List<OrderVo> list = orderMapper.listByStatus(status, userService.getCurrentUser());
+    public List<OrderVo> getOrderList(Short status, Page<?> page) {
+        List<OrderVo> list = orderMapper.listByStatus(status, userService.getCurrentUser(), page);
         for (OrderVo orderVo : list) {
             orderVo.mapToStatusStr();
         }
@@ -158,12 +159,12 @@ public class OrderServiceImpl implements OrderService {
      * @see com.troytan.ymcake.service.OrderService#getAdminOrders(java.lang.Short)
      */
     @Override
-    public List<OrderVo> getAdminOrders(Short status) {
+    public List<OrderVo> getAdminOrders(Short status, Page<?> page) {
         if (userService.getUserRole() != 1) {
             return null;
         }
 
-        List<OrderVo> list = orderMapper.listByStatus(status, null);
+        List<OrderVo> list = orderMapper.listByStatus(status, null, page);
         for (OrderVo orderVo : list) {
             orderVo.mapToStatusStr();
         }

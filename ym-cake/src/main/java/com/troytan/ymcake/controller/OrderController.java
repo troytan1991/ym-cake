@@ -4,16 +4,19 @@ import java.util.List;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
+import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import com.github.pagehelper.Page;
 import com.troytan.ymcake.domain.Order;
 import com.troytan.ymcake.dto.DeliveryDto;
 import com.troytan.ymcake.dto.OrderDto;
@@ -84,14 +87,18 @@ public class OrderController {
      */
     @GET
     @Path("/{status}")
-    public List<OrderVo> getOrders(@PathParam("status") Short status) {
-        return orderService.getOrderList(status);
+    public List<OrderVo> getOrders(@PathParam("status") Short status,
+                                   @DefaultValue("1") @QueryParam("pageNum") Integer pageNum,
+                                   @DefaultValue("10") @QueryParam("pageSize") Integer pageSize) {
+        return orderService.getOrderList(status, new Page<>(pageNum, pageSize));
     }
 
     @GET
     @Path("/admin/{status}")
-    public List<OrderVo> getAdminOrders(@PathParam("status") Short status) {
-        return orderService.getAdminOrders(status);
+    public List<OrderVo> getAdminOrders(@PathParam("status") Short status,
+                                        @DefaultValue("1") @QueryParam("pageNum") Integer pageNum,
+                                        @DefaultValue("10") @QueryParam("pageSize") Integer pageSize) {
+        return orderService.getAdminOrders(status, new Page<>(pageNum, pageSize));
     }
 
     /**

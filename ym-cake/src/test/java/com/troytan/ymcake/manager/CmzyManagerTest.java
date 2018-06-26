@@ -1,6 +1,5 @@
 package com.troytan.ymcake.manager;
 
-import org.json.JSONException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,12 +9,13 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 @RunWith(SpringRunner.class)
 public class CmzyManagerTest {
-    
+
     @Autowired
     private CmzyManager cmzy;
-    
+
     @Test
-    public void testGetNews() throws JSONException {
+    public void testGetNews() {
+
         cmzy.updateNews();
     }
 }

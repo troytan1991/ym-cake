@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.github.pagehelper.Page;
 import com.troytan.ymcake.domain.Comment;
 import com.troytan.ymcake.domain.DomainConst;
 import com.troytan.ymcake.dto.CommentDto;
@@ -43,8 +44,8 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public List<CommentVo> getCommentList(Long productId) {
-        List<CommentVo> list = commentMapper.listByProductId(productId);
+    public List<CommentVo> getCommentList(Long productId, Page<?> page) {
+        List<CommentVo> list = commentMapper.listByProductId(productId, page);
         // 脱敏处理
         for (CommentVo commentVo : list) {
             commentVo.setNickname(MosaicUtils.nameMosaic(commentVo.getNickname()));

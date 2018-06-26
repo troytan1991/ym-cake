@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.github.pagehelper.Page;
 import com.troytan.ymcake.domain.Order;
 import com.troytan.ymcake.dto.OrderCountDto;
 import com.troytan.ymcake.vo.OrderVo;
@@ -46,7 +47,7 @@ public interface OrderMapper {
 
     void updateStatusById(@Param("orderId") Long orderId, @Param("status") Short status);
 
-    List<OrderVo> listByStatus(@Param("status") Short status, @Param("userId") Long userId);
+    List<OrderVo> listByStatus(@Param("status") Short status, @Param("userId") Long userId, Page<?> page);
 
     List<OrderCountDto> countOrderGroupByStatus(Long currentUser);
 }

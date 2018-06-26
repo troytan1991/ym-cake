@@ -2,6 +2,9 @@ package com.troytan.ymcake.repository;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
+import com.github.pagehelper.Page;
 import com.troytan.ymcake.domain.Comment;
 import com.troytan.ymcake.vo.CommentVo;
 
@@ -46,5 +49,5 @@ public interface CommentMapper {
      */
     int updateByPrimaryKey(Comment record);
 
-    List<CommentVo> listByProductId(Long productId);
+    List<CommentVo> listByProductId(@Param("productId")Long productId, Page<?> page);
 }

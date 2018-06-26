@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.github.pagehelper.Page;
 import com.troytan.ymcake.domain.Order;
 import com.troytan.ymcake.dto.DeliveryDto;
 import com.troytan.ymcake.dto.OrderDto;
@@ -19,7 +20,7 @@ public interface OrderService {
 
     void deliverOrder(Long orderId, DeliveryDto deliveryDto);
 
-    List<OrderVo> getOrderList(Short status);
+    List<OrderVo> getOrderList(Short status, Page<?> page);
 
     OrderCountVo countOrder();
 
@@ -29,5 +30,5 @@ public interface OrderService {
 
     void deleteOrder(Long orderId);
 
-    List<OrderVo> getAdminOrders(Short status);
+    List<OrderVo> getAdminOrders(Short status, Page<?> page);
 }

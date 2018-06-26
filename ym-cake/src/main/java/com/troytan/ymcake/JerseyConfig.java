@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider;
 import com.troytan.ymcake.controller.AddrController;
+import com.troytan.ymcake.controller.CmzyController;
 import com.troytan.ymcake.controller.CommentController;
 import com.troytan.ymcake.controller.ContactController;
 import com.troytan.ymcake.controller.OrderController;
@@ -29,7 +30,9 @@ public class JerseyConfig extends ResourceConfig {
         register(ProductController.class);
         register(ShopcartController.class);
         register(UserController.class);
+        register(CmzyController.class);
         register(JacksonObjectMapperProvider.class);
         register(JacksonJaxbJsonProvider.class);
+
     }
 }

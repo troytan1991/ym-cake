@@ -22,14 +22,14 @@ public class AuthAspect {
     @Before("within(com.troytan.ymcake.controller..*) && !@annotation(com.troytan.ymcake.aspect.NoAuth)")
     public void checkRequest() {
         // 生产用
-//        String sessionId = request.getParameter("sessionId");
-//        Long userId = userService.checkSessionId(sessionId);
-//        if (userId == null) {
-//            throw new ClientErrorException(401);
-//        }
-//        userService.setCurrentUser(userId);
+        String sessionId = request.getParameter("sessionId");
+        Long userId = userService.checkSessionId(sessionId);
+        if (userId == null) {
+            throw new ClientErrorException(401);
+        }
+        userService.setCurrentUser(userId);
 
         // 测试用
-         userService.setCurrentUser(1L);
+        // userService.setCurrentUser(1L);
     }
 }

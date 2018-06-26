@@ -3,15 +3,18 @@ package com.troytan.ymcake.controller;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import com.github.pagehelper.Page;
 import com.troytan.ymcake.aspect.NoAuth;
 import com.troytan.ymcake.dto.CommentDto;
 import com.troytan.ymcake.service.CommentService;
@@ -29,8 +32,11 @@ public class CommentController {
     @GET
     @Path("/{productId}")
     @NoAuth
-    public List<CommentVo> getComments(@PathParam("productId") Long productId) {
-        return commentService.getCommentList(productId);
+    public List<CommentVo> getComments(@PathParam("productId") Long productId,
+                                       @DefaultValue("1") @QueryParam("pageNum") Integer pageNum,
+                                       @DefaultValue("10") @QueryParam("pageSize") Integer pageSize) {
+
+        return commentService.getCommentList(productId, new Page<>(pageNum, pageSize));
     }
 
     @PUT

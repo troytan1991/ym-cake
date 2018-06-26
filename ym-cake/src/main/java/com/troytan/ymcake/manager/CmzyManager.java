@@ -1,5 +1,7 @@
 package com.troytan.ymcake.manager;
 
+import java.util.Date;
+
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
@@ -7,13 +9,17 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.troytan.ymcake.domain.News;
 import com.troytan.ymcake.dto.NewsRequestDto;
+import com.troytan.ymcake.repository.NewsMapper;
 import com.troytan.ymcake.util.HtmlUtils;
 
 /**
@@ -28,14 +34,17 @@ public class CmzyManager {
     private final String APP_ID     = "wx2cd49ed28f6c9896";
     private final String APP_SECRET = "364a0200174d3cbcc980314bfc5e6368";
 
+    @Autowired
+    private NewsMapper   newsMapper;
+
     /**
      * 更新图文
      *
      * @author troytan
-     * @throws JSONException
+     * @throws Exception
      * @date 2018年6月25日
      */
-    public void updateNews() throws JSONException {
+    public void updateNews() {
         String token = getAccessToken();
         NewsRequestDto in = new NewsRequestDto("news", 0, -1);
         Client client = ClientBuilder.newClient().register(JacksonJsonProvider.class);
@@ -43,16 +52,32 @@ public class CmzyManager {
                                                                                                                              token);
         Response response = target.request("applicayion/json;utf-8").post(Entity.entity(in,
                                                                                         MediaType.APPLICATION_JSON));
-        JSONObject object = new JSONObject(response.readEntity(String.class));
-        JSONArray items = object.getJSONArray("item");
-        for (int i = 0; i < items.length(); i++) {
-            String mediaId = items.getJSONObject(i).getString("media_id");
-            JSONObject news = items.getJSONObject(i).getJSONObject("content").getJSONArray("news_item").getJSONObject(0);
-            String title = news.getString("title");
-            String digest = news.getString("digest");
-            String url = news.getString("url");
-            String content = news.getString("content");
-            System.out.println(HtmlUtils.getTextFromHtml(content, 50));
+        JsonParser jParser = new JsonParser();
+        JsonObject object = (JsonObject) jParser.parse(response.readEntity(String.class));
+        JsonArray items = object.getAsJsonArray("item");
+        for (JsonElement jsonElement : items) {
+            JsonObject joItem = (JsonObject) jsonElement;
+
+            News news = new News();
+            news.setMediaId(joItem.get("media_id").getAsString());
+            JsonObject joContent = joItem.getAsJsonObject("content");
+            news.setCreatedOn(new Date(joContent.get("create_time").getAsLong() * 1000));
+            news.setUpdatedOn(new Date(joContent.get("update_time").getAsLong() * 1000));
+            JsonObject joNews = (JsonObject) joContent.getAsJsonArray("news_item").get(0);
+            news.setTitle(joNews.get("title").getAsString());
+            news.setDigest(joNews.get("digest").getAsString());
+            news.setUrl(joNews.get("url").getAsString());
+            news.setContent(HtmlUtils.getTextFromHtml(joNews.get("content").getAsString(), 50));
+
+            News dbNews = newsMapper.selectByPrimaryKey(news.getMediaId());
+
+            // 更新条件
+            if (dbNews != null && dbNews.getUpdatedOn().after(news.getUpdatedOn())) {
+                newsMapper.updateByPrimaryKey(news);
+            } else if (dbNews == null) {
+                newsMapper.insert(news);
+            }
+
         }
     }
 
@@ -62,16 +87,17 @@ public class CmzyManager {
      * @author troytan
      * @date 2018年6月25日
      * @return
-     * @throws JSONException
+     * @throws Exception
      */
-    private String getAccessToken() throws JSONException {
+    private String getAccessToken() {
         Client client = ClientBuilder.newClient().register(JacksonJsonProvider.class);
         WebTarget target = client.target("https://api.weixin.qq.com/cgi-bin/token").path("").queryParam("appid",
                                                                                                         APP_ID).queryParam("secret",
                                                                                                                            APP_SECRET).queryParam("grant_type",
                                                                                                                                                   "client_credential");
         String response = target.request("applicayion/json;utf-8").get(String.class);
-        return new JSONObject(response).getString("access_token");
+        JsonObject jsonObject = (JsonObject) new JsonParser().parse(response);
+        return jsonObject.get("access_token").getAsString();
     }
 
 }
