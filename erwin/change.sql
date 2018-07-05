@@ -10,7 +10,7 @@ alter table tt_order add column pay_method smallint;
 alter table tm_user add column role smallint;
 CREATE TABLE TT_NEWS
 (
-	MEDIA_ID             INTEGER NOT NULL,
+	MEDIA_ID             VARCHAR(50)  NOT NULL,
 	title                VARCHAR(50) NULL,
 	digest               VARCHAR(100) NULL,
 	url                  VARCHAR(200) NULL,

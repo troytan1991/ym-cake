@@ -67,12 +67,13 @@ public class CmzyManager {
             news.setTitle(joNews.get("title").getAsString());
             news.setDigest(joNews.get("digest").getAsString());
             news.setUrl(joNews.get("url").getAsString());
+            news.setThumbUrl(joNews.get("thumb_url").getAsString());
             news.setContent(HtmlUtils.getTextFromHtml(joNews.get("content").getAsString(), 50));
 
             News dbNews = newsMapper.selectByPrimaryKey(news.getMediaId());
 
             // 更新条件
-            if (dbNews != null && dbNews.getUpdatedOn().after(news.getUpdatedOn())) {
+            if (dbNews != null && dbNews.getUpdatedOn().before(news.getUpdatedOn())) {
                 newsMapper.updateByPrimaryKey(news);
             } else if (dbNews == null) {
                 newsMapper.insert(news);
