@@ -1,0 +1,60 @@
+INSERT INTO OWCAKE.tt_designer (NAME,ORDER_NUM,PHOTO,DESCRIPTION,PHOTO_DETAIL,CREATE_ON,CREATE_BY) 
+values ('常艳霞','158','http://troytan1991.club/cmzy/designer/changyxp.jpg',
+'','http://troytan1991.club/cmzy/designer/changyxd.jpg',now(),'admin');
+
+INSERT INTO OWCAKE.tt_designer (NAME,ORDER_NUM,PHOTO,DESCRIPTION,PHOTO_DETAIL,CREATE_ON,CREATE_BY) 
+values ('杨晓圆','205','http://troytan1991.club/cmzy/designer/yangp.jpg',
+'','http://troytan1991.club/cmzy/designer/yangd.jpg',now(),'admin');
+
+INSERT INTO OWCAKE.tt_designer (NAME,ORDER_NUM,PHOTO,DESCRIPTION,PHOTO_DETAIL,CREATE_ON,CREATE_BY) 
+values ('孙健','206','http://troytan1991.club/cmzy/designer/sunjianp.jpg',
+'','http://troytan1991.club/cmzy/designer/shunjiand.jpg',now(),'admin');
+
+
+
+INSERT INTO OWCAKE.tt_designer (NAME,ORDER_NUM,PHOTO,DESCRIPTION,PHOTO_DETAIL,CREATE_ON,CREATE_BY) 
+values ('张林霞','205','http://troytan1991.club/cmzy/designer/zhanglxp.jpg',
+'','http://troytan1991.club/cmzy/designer/zhanglxd.jpg',now(),'admin');
+
+INSERT INTO OWCAKE.tt_designer (NAME,ORDER_NUM,PHOTO,DESCRIPTION,PHOTO_DETAIL,CREATE_ON,CREATE_BY) 
+values ('魏晓东','151','http://troytan1991.club/cmzy/designer/weixdp.jpg',
+'','http://troytan1991.club/cmzy/designer/weixdd.jpg',now(),'admin');
+INSERT INTO OWCAKE.tt_designer (NAME,ORDER_NUM,PHOTO,DESCRIPTION,PHOTO_DETAIL,CREATE_ON,CREATE_BY) 
+values ('段泽东','202','http://troytan1991.club/cmzy/designer/duanzdp.jpg',
+'','http://troytan1991.club/cmzy/designer/duanzdd.jpg',now(),'admin');
+
+INSERT INTO OWCAKE.tt_designer (NAME,ORDER_NUM,PHOTO,DESCRIPTION,PHOTO_DETAIL,CREATE_ON,CREATE_BY) 
+values ('谷业文','150','http://troytan1991.club/cmzy/designer/guywp.jpg',
+'','http://troytan1991.club/cmzy/designer/guywd.jpg',now(),'admin');
+
+INSERT INTO OWCAKE.tt_designer (NAME,ORDER_NUM,PHOTO,DESCRIPTION,PHOTO_DETAIL,CREATE_ON,CREATE_BY) 
+values ('孙静','150','http://troytan1991.club/cmzy/designer/sunjingd.jpg',
+'','http://troytan1991.club/cmzy/designer/sunjingd.jpg',now(),'admin');
+
+
+INSERT INTO OWCAKE.tt_work (img_url,designer_id,is_cover) 
+values ('http://troytan1991.club/cmzy/designer/changyanxia1.jpg',
+(select DESIGNER_ID from owcake.tt_designer where NAME = '常艳霞'),1);
+INSERT INTO OWCAKE.tt_work (img_url,designer_id,is_cover) 
+values ('http://troytan1991.club/cmzy/designer/changyanxia2.jpg',
+(select DESIGNER_ID from owcake.tt_designer where NAME = '常艳霞'),1);
+INSERT INTO OWCAKE.tt_work (img_url,designer_id,is_cover) 
+values ('http://troytan1991.club/cmzy/designer/changyanxia3.jpg',
+(select DESIGNER_ID from owcake.tt_designer where NAME = '常艳霞'),1);
+
+
+
+INSERT INTO OWCAKE.tt_worker (img_url)
+values ('http://troytan1991.club/cmzy/worker/1.jpg');
+
+INSERT INTO OWCAKE.tt_fitment (cover_url,classify,label) 
+values ('http://troytan1991.club/cmzy/decorate/咖啡店.jpg',
+'1','咖啡店');
+
+
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/decorate/1.jpg',
+(select fitment_id from tt_fitment where label = '咖啡店'));
+
+
+
