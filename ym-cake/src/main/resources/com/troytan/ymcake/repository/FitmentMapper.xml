@@ -67,12 +67,13 @@
     <result column="CLASSIFY" jdbcType="SMALLINT" property="classify" />
     <result column="LABEL" jdbcType="VARCHAR" property="label" />
        <collection ofType="com.troytan.ymcake.domain.FitmentDetail" property="fitmentDetailsList">
-		   <id column="FIEMENT_DETAIL_ID" jdbcType="INTEGER" property="fitmentDetailId" />
+		   <id column="FITMENT_DETAIL_ID" jdbcType="INTEGER" property="fitmentDetailId" />
            <result column="IMG_URL" jdbcType="VARCHAR" property="imgUrl" />
+           <result column="FITMENT_ID" jdbcType="INTEGER" property="fitmentId" />
 	   </collection>	 
 	</resultMap>
    <select id="listByDetail" resultMap="FitmentDtoResultMap">
-	select fitment.FITMENT_ID, fitment.COVER_URL, fitment.CLASSIFY, fitment.LABEL,detail.IMG_URL
+	select fitment.FITMENT_ID, fitment.COVER_URL, fitment.CLASSIFY, fitment.LABEL, detail.fitment_detail_id, detail.IMG_URL, detail.fitment_id
 	from  OWCAKE.tt_fitment fitment left join 
 	owcake.tt_fitment_detail detail on  fitment.FITMENT_ID= detail.FITMENT_ID;    
    </select>

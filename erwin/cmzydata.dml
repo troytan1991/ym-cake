@@ -8,7 +8,7 @@ values ('杨晓圆','205','http://troytan1991.club/cmzy/designer/yangp.jpg',
 
 INSERT INTO OWCAKE.tt_designer (NAME,ORDER_NUM,PHOTO,DESCRIPTION,PHOTO_DETAIL,CREATE_ON,CREATE_BY) 
 values ('孙健','206','http://troytan1991.club/cmzy/designer/sunjianp.jpg',
-'','http://troytan1991.club/cmzy/designer/shunjiand.jpg',now(),'admin');
+'','http://troytan1991.club/cmzy/designer/sunjiand.jpg',now(),'admin');
 
 
 
@@ -41,20 +41,438 @@ values ('http://troytan1991.club/cmzy/designer/changyanxia2.jpg',
 INSERT INTO OWCAKE.tt_work (img_url,designer_id,is_cover) 
 values ('http://troytan1991.club/cmzy/designer/changyanxia3.jpg',
 (select DESIGNER_ID from owcake.tt_designer where NAME = '常艳霞'),1);
+INSERT INTO OWCAKE.tt_work (img_url,designer_id,is_cover) 
+values ('http://troytan1991.club/cmzy/designer/changyanxia4.jpg',
+(select DESIGNER_ID from owcake.tt_designer where NAME = '常艳霞'),0);
+INSERT INTO OWCAKE.tt_work (img_url,designer_id,is_cover) 
+values ('http://troytan1991.club/cmzy/designer/changyanxia5.jpg',
+(select DESIGNER_ID from owcake.tt_designer where NAME = '常艳霞'),0);
+INSERT INTO OWCAKE.tt_work (img_url,designer_id,is_cover) 
+values ('http://troytan1991.club/cmzy/designer/changyanxia6.jpg',
+(select DESIGNER_ID from owcake.tt_designer where NAME = '常艳霞'),0);
+
+
+INSERT INTO OWCAKE.tt_work (img_url,designer_id,is_cover) 
+values ('http://troytan1991.club/cmzy/designer/yang1.jpg',
+(select DESIGNER_ID from owcake.tt_designer where NAME = '杨晓圆'),1);
+INSERT INTO OWCAKE.tt_work (img_url,designer_id,is_cover) 
+values ('http://troytan1991.club/cmzy/designer/yang2.jpg',
+(select DESIGNER_ID from owcake.tt_designer where NAME = '杨晓圆'),1);
+INSERT INTO OWCAKE.tt_work (img_url,designer_id,is_cover) 
+values ('http://troytan1991.club/cmzy/designer/yang3.jpg',
+(select DESIGNER_ID from owcake.tt_designer where NAME = '杨晓圆'),1);
+INSERT INTO OWCAKE.tt_work (img_url,designer_id,is_cover) 
+values ('http://troytan1991.club/cmzy/designer/yang4.jpg',
+(select DESIGNER_ID from owcake.tt_designer where NAME = '杨晓圆'),0);
+INSERT INTO OWCAKE.tt_work (img_url,designer_id,is_cover) 
+values ('http://troytan1991.club/cmzy/designer/yang5.jpg',
+(select DESIGNER_ID from owcake.tt_designer where NAME = '杨晓圆'),0);
+INSERT INTO OWCAKE.tt_work (img_url,designer_id,is_cover) 
+values ('http://troytan1991.club/cmzy/designer/yang6.jpg',
+(select DESIGNER_ID from owcake.tt_designer where NAME = '杨晓圆'),0);
+INSERT INTO OWCAKE.tt_work (img_url,designer_id,is_cover) 
+values ('http://troytan1991.club/cmzy/designer/yang7.jpg',
+(select DESIGNER_ID from owcake.tt_designer where NAME = '杨晓圆'),0);
+INSERT INTO OWCAKE.tt_work (img_url,designer_id,is_cover) 
+values ('http://troytan1991.club/cmzy/designer/yang8.jpg',
+(select DESIGNER_ID from owcake.tt_designer where NAME = '杨晓圆'),0);
+INSERT INTO OWCAKE.tt_work (img_url,designer_id,is_cover) 
+values ('http://troytan1991.club/cmzy/designer/yang9.jpg',
+(select DESIGNER_ID from owcake.tt_designer where NAME = '杨晓圆'),0);
+INSERT INTO OWCAKE.tt_work (img_url,designer_id,is_cover) 
+values ('http://troytan1991.club/cmzy/designer/yang10.jpg',
+(select DESIGNER_ID from owcake.tt_designer where NAME = '杨晓圆'),0);
+INSERT INTO OWCAKE.tt_work (img_url,designer_id,is_cover) 
+values ('http://troytan1991.club/cmzy/designer/yang9.jpg',
+(select DESIGNER_ID from owcake.tt_designer where NAME = '杨晓圆'),0);
+INSERT INTO OWCAKE.tt_work (img_url,designer_id,is_cover) 
+values ('http://troytan1991.club/cmzy/designer/yang10.jpg',
+(select DESIGNER_ID from owcake.tt_designer where NAME = '杨晓圆'),0);
+INSERT INTO OWCAKE.tt_work (img_url,designer_id,is_cover) 
+values ('http://troytan1991.club/cmzy/designer/yang11.jpg',
+(select DESIGNER_ID from owcake.tt_designer where NAME = '杨晓圆'),0);
+INSERT INTO OWCAKE.tt_work (img_url,designer_id,is_cover) 
+values ('http://troytan1991.club/cmzy/designer/yang12.jpg',
+(select DESIGNER_ID from owcake.tt_designer where NAME = '杨晓圆'),0);
+INSERT INTO OWCAKE.tt_work (img_url,designer_id,is_cover) 
+values ('http://troytan1991.club/cmzy/designer/yang13.jpg',
+(select DESIGNER_ID from owcake.tt_designer where NAME = '杨晓圆'),0);
+INSERT INTO OWCAKE.tt_work (img_url,designer_id,is_cover) 
+values ('http://troytan1991.club/cmzy/designer/yang14.jpg',
+(select DESIGNER_ID from owcake.tt_designer where NAME = '杨晓圆'),0);
+INSERT INTO OWCAKE.tt_work (img_url,designer_id,is_cover) 
+values ('http://troytan1991.club/cmzy/designer/yang15.jpg',
+(select DESIGNER_ID from owcake.tt_designer where NAME = '杨晓圆'),0);
+INSERT INTO OWCAKE.tt_work (img_url,designer_id,is_cover) 
+values ('http://troytan1991.club/cmzy/designer/yang16.jpg',
+(select DESIGNER_ID from owcake.tt_designer where NAME = '杨晓圆'),0);
+INSERT INTO OWCAKE.tt_work (img_url,designer_id,is_cover) 
+values ('http://troytan1991.club/cmzy/designer/yang17.jpg',
+(select DESIGNER_ID from owcake.tt_designer where NAME = '杨晓圆'),0);
+INSERT INTO OWCAKE.tt_work (img_url,designer_id,is_cover) 
+values ('http://troytan1991.club/cmzy/designer/yang18.jpg',
+(select DESIGNER_ID from owcake.tt_designer where NAME = '杨晓圆'),0);
+INSERT INTO OWCAKE.tt_work (img_url,designer_id,is_cover) 
+values ('http://troytan1991.club/cmzy/designer/yang19.jpg',
+(select DESIGNER_ID from owcake.tt_designer where NAME = '杨晓圆'),0);
+
+
+
+INSERT INTO OWCAKE.tt_work (img_url,designer_id,is_cover) 
+values ('http://troytan1991.club/cmzy/designer/sunjing1.jpg',
+(select DESIGNER_ID from owcake.tt_designer where NAME = '孙静'),1);
+INSERT INTO OWCAKE.tt_work (img_url,designer_id,is_cover) 
+values ('http://troytan1991.club/cmzy/designer/sunjing2.jpg',
+(select DESIGNER_ID from owcake.tt_designer where NAME = '孙静'),1);
+INSERT INTO OWCAKE.tt_work (img_url,designer_id,is_cover) 
+values ('http://troytan1991.club/cmzy/designer/sunjing3.jpg',
+(select DESIGNER_ID from owcake.tt_designer where NAME = '孙静'),1);
+INSERT INTO OWCAKE.tt_work (img_url,designer_id,is_cover) 
+values ('http://troytan1991.club/cmzy/designer/sunjing4.jpg',
+(select DESIGNER_ID from owcake.tt_designer where NAME = '孙静'),0);
+INSERT INTO OWCAKE.tt_work (img_url,designer_id,is_cover) 
+values ('http://troytan1991.club/cmzy/designer/sunjing5.jpg',
+(select DESIGNER_ID from owcake.tt_designer where NAME = '孙静'),0);
+INSERT INTO OWCAKE.tt_work (img_url,designer_id,is_cover) 
+values ('http://troytan1991.club/cmzy/designer/sunjing6.jpg',
+(select DESIGNER_ID from owcake.tt_designer where NAME = '孙静'),0);
+INSERT INTO OWCAKE.tt_work (img_url,designer_id,is_cover) 
+values ('http://troytan1991.club/cmzy/designer/sunjing7.jpg',
+(select DESIGNER_ID from owcake.tt_designer where NAME = '孙静'),0);
+INSERT INTO OWCAKE.tt_work (img_url,designer_id,is_cover) 
+values ('http://troytan1991.club/cmzy/designer/sunjing8.jpg',
+(select DESIGNER_ID from owcake.tt_designer where NAME = '孙静'),0);
+INSERT INTO OWCAKE.tt_work (img_url,designer_id,is_cover) 
+values ('http://troytan1991.club/cmzy/designer/sunjing9.jpg',
+(select DESIGNER_ID from owcake.tt_designer where NAME = '孙静'),0);
+
+INSERT INTO OWCAKE.tt_work (img_url,designer_id,is_cover) 
+values ('http://troytan1991.club/cmzy/designer/liuyang1.jpg',
+(select DESIGNER_ID from owcake.tt_designer where NAME = '刘洋'),1);
+INSERT INTO OWCAKE.tt_work (img_url,designer_id,is_cover) 
+values ('http://troytan1991.club/cmzy/designer/liuyang2.jpg',
+(select DESIGNER_ID from owcake.tt_designer where NAME = '刘洋'),1);
+INSERT INTO OWCAKE.tt_work (img_url,designer_id,is_cover) 
+values ('http://troytan1991.club/cmzy/designer/liuyang3.jpg',
+(select DESIGNER_ID from owcake.tt_designer where NAME = '刘洋'),1);
+INSERT INTO OWCAKE.tt_work (img_url,designer_id,is_cover) 
+values ('http://troytan1991.club/cmzy/designer/liuyang4.jpg',
+(select DESIGNER_ID from owcake.tt_designer where NAME = '刘洋'),0);
+INSERT INTO OWCAKE.tt_work (img_url,designer_id,is_cover) 
+values ('http://troytan1991.club/cmzy/designer/liuyang5.jpg',
+(select DESIGNER_ID from owcake.tt_designer where NAME = '刘洋'),0);
+
+
 
 
 
 INSERT INTO OWCAKE.tt_worker (img_url)
 values ('http://troytan1991.club/cmzy/worker/1.jpg');
+INSERT INTO OWCAKE.tt_worker (img_url)
+values ('http://troytan1991.club/cmzy/worker/2.jpg');
+INSERT INTO OWCAKE.tt_worker (img_url)
+values ('http://troytan1991.club/cmzy/worker/3.jpg');
+INSERT INTO OWCAKE.tt_worker (img_url)
+values ('http://troytan1991.club/cmzy/worker/4.jpg');
+INSERT INTO OWCAKE.tt_worker (img_url)
+values ('http://troytan1991.club/cmzy/worker/5.jpg');
+INSERT INTO OWCAKE.tt_worker (img_url)
+values ('http://troytan1991.club/cmzy/worker/6.jpg');
+INSERT INTO OWCAKE.tt_worker (img_url)
+values ('http://troytan1991.club/cmzy/worker/7.jpg');
+
+
 
 INSERT INTO OWCAKE.tt_fitment (cover_url,classify,label) 
 values ('http://troytan1991.club/cmzy/decorate/咖啡店.jpg',
 '1','咖啡店');
-
-
 INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
 values ('http://troytan1991.club/cmzy/decorate/1.jpg',
 (select fitment_id from tt_fitment where label = '咖啡店'));
 
+INSERT INTO OWCAKE.tt_fitment (cover_url,classify,label) 
+values ('http://troytan1991.club/cmzy/decorate/酒店.jpg',
+'1','酒店');
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/decorate/1.jpg',
+(select fitment_id from tt_fitment where label = '酒店'));
 
+INSERT INTO OWCAKE.tt_fitment (cover_url,classify,label) 
+values ('http://troytan1991.club/cmzy/decorate/服装店.jpg',
+'1','服装店');
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/decorate/1.jpg',
+(select fitment_id from tt_fitment where label = '服装店'));
+
+
+INSERT INTO OWCAKE.tt_fitment (cover_url,classify,label) 
+values ('http://troytan1991.club/cmzy/decorate/写字楼.jpg',
+'1','写字楼');
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/decorate/1.jpg',
+(select fitment_id from tt_fitment where label = '写字楼'));
+
+INSERT INTO OWCAKE.tt_fitment (cover_url,classify,label) 
+values ('http://troytan1991.club/cmzy/decorate/水果店.jpg',
+'1','水果店');
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/decorate/1.jpg',
+(select fitment_id from tt_fitment where label = '水果店'));
+
+INSERT INTO OWCAKE.tt_fitment (cover_url,classify,label) 
+values ('http://troytan1991.club/cmzy/decorate/西餐厅.jpg',
+'1','西餐厅');
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/decorate/1.jpg',
+(select fitment_id from tt_fitment where label = '西餐厅'));
+
+INSERT INTO OWCAKE.tt_fitment (cover_url,classify,label) 
+values ('http://troytan1991.club/cmzy/decorate/会议室.jpg',
+'1','会议室');
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/decorate/1.jpg',
+(select fitment_id from tt_fitment where label = '会议室'));
+
+
+INSERT INTO OWCAKE.tt_fitment (cover_url,classify,label) 
+values ('http://troytan1991.club/cmzy/case/太阳城1.jpg',
+'3','太阳城家装案例');
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/case/太阳城1.jpg',
+(select fitment_id from tt_fitment where label = '太阳城家装案例'));
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/case/太阳城2.jpg',
+(select fitment_id from tt_fitment where label = '太阳城家装案例'));
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/case/太阳城3.jpg',
+(select fitment_id from tt_fitment where label = '太阳城家装案例'));
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/case/太阳城4.jpg',
+(select fitment_id from tt_fitment where label = '太阳城家装案例'));
+
+INSERT INTO OWCAKE.tt_fitment (cover_url,classify,label) 
+values ('http://troytan1991.club/cmzy/case/百万家园1.jpg',
+'3','百万家园家装案例');
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/case/百万家园1.jpg',
+(select fitment_id from tt_fitment where label = '百万家园家装案例'));
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/case/百万家园2.jpg',
+(select fitment_id from tt_fitment where label = '百万家园家装案例'));
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/case/百万家园3.jpg',
+(select fitment_id from tt_fitment where label = '百万家园家装案例'));
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/case/百万家园4.jpg',
+(select fitment_id from tt_fitment where label = '百万家园家装案例'));
+
+INSERT INTO OWCAKE.tt_fitment (cover_url,classify,label) 
+values ('http://troytan1991.club/cmzy/case/财富1.jpg',
+'3','财富官邸家装案例');
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/case/财富1.jpg',
+(select fitment_id from tt_fitment where label = '财富官邸家装案例'));
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/case/财富2.jpg',
+(select fitment_id from tt_fitment where label = '财富官邸家装案例'));
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/case/财富3.jpg',
+(select fitment_id from tt_fitment where label = '财富官邸家装案例'));
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/case/财富4.jpg',
+(select fitment_id from tt_fitment where label = '财富官邸家装案例'));
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/case/财富5.jpg',
+(select fitment_id from tt_fitment where label = '财富官邸家装案例'));
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/case/财富6.jpg',
+(select fitment_id from tt_fitment where label = '财富官邸家装案例'));
+
+
+INSERT INTO OWCAKE.tt_fitment (cover_url,classify,label) 
+values ('http://troytan1991.club/cmzy/case/绿地1.jpg',
+'3','绿地家装案例');
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/case/绿地1.jpg',
+(select fitment_id from tt_fitment where label = '绿地家装案例'));
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/case/绿地2.jpg',
+(select fitment_id from tt_fitment where label = '绿地家装案例'));
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/case/绿地3.jpg',
+(select fitment_id from tt_fitment where label = '绿地家装案例'));
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/case/绿地4.jpg',
+(select fitment_id from tt_fitment where label = '绿地家装案例'));
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/case/绿地5.jpg',
+(select fitment_id from tt_fitment where label = '绿地家装案例'));
+
+INSERT INTO OWCAKE.tt_fitment (cover_url,classify,label) 
+values ('http://troytan1991.club/cmzy/case/金水湾1.jpg',
+'3','金水湾家装案例');
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/case/金水湾1.jpg',
+(select fitment_id from tt_fitment where label = '金水湾家装案例'));
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/case/金水湾2.jpg',
+(select fitment_id from tt_fitment where label = '金水湾家装案例'));
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/case/金水湾3.jpg',
+(select fitment_id from tt_fitment where label = '金水湾家装案例'));
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/case/金水湾4.jpg',
+(select fitment_id from tt_fitment where label = '金水湾家装案例'));
+
+
+INSERT INTO OWCAKE.tt_fitment (cover_url,classify,label) 
+values ('http://troytan1991.club/cmzy/site/山西创美之源瓦工展示.jpg',
+'4','瓦工展示');
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/site/山西创美之源瓦工展示1.jpg',
+(select fitment_id from tt_fitment where label = '瓦工展示'));
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/site/山西创美之源瓦工展示2.jpg',
+(select fitment_id from tt_fitment where label = '瓦工展示'));
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/site/山西创美之源瓦工展示3.jpg',
+(select fitment_id from tt_fitment where label = '瓦工展示'));
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/site/山西创美之源瓦工展示4.jpg',
+(select fitment_id from tt_fitment where label = '瓦工展示'));
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/site/山西创美之源瓦工展示5.jpg',
+(select fitment_id from tt_fitment where label = '瓦工展示'));
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/site/山西创美之源瓦工展示6.jpg',
+(select fitment_id from tt_fitment where label = '瓦工展示'));
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/site/山西创美之源瓦工展示7.jpg',
+(select fitment_id from tt_fitment where label = '瓦工展示'));
+
+INSERT INTO OWCAKE.tt_fitment (cover_url,classify,label) 
+values ('http://troytan1991.club/cmzy/site/山西创美之源防水展示.jpg',
+'4','防水展示');
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/site/山西创美之源防水展示1.jpg',
+(select fitment_id from tt_fitment where label = '防水展示'));
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/site/山西创美之源防水展示2.jpg',
+(select fitment_id from tt_fitment where label = '防水展示'));
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/site/山西创美之源防水展示3.jpg',
+(select fitment_id from tt_fitment where label = '防水展示'));
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/site/山西创美之源防水展示4.jpg',
+(select fitment_id from tt_fitment where label = '防水展示'));
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/site/山西创美之源防水展示5.jpg',
+(select fitment_id from tt_fitment where label = '防水展示'));
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/site/山西创美之源防水展示6.jpg',
+(select fitment_id from tt_fitment where label = '防水展示'));
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/site/山西创美之源防水展示7.jpg',
+(select fitment_id from tt_fitment where label = '防水展示'));
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/site/山西创美之源防水展示8.jpg',
+(select fitment_id from tt_fitment where label = '防水展示'));
+
+INSERT INTO OWCAKE.tt_fitment (cover_url,classify,label) 
+values ('http://troytan1991.club/cmzy/site/山西创美之源木工展示.jpg',
+'4','木工展示');
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/site/山西创美之源木工展示1.jpg',
+(select fitment_id from tt_fitment where label = '木工展示'));
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/site/山西创美之源木工展示2.jpg',
+(select fitment_id from tt_fitment where label = '木工展示'));
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/site/山西创美之源木工展示3.jpg',
+(select fitment_id from tt_fitment where label = '木工展示'));
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/site/山西创美之源木工展示4.jpg',
+(select fitment_id from tt_fitment where label = '木工展示'));
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/site/山西创美之源木工展示5.jpg',
+(select fitment_id from tt_fitment where label = '木工展示'));
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/site/山西创美之源木工展示6.jpg',
+(select fitment_id from tt_fitment where label = '木工展示'));
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/site/山西创美之源木工展示7.jpg',
+(select fitment_id from tt_fitment where label = '木工展示'));
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/site/山西创美之源木工展示8.jpg',
+(select fitment_id from tt_fitment where label = '木工展示'));
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/site/山西创美之源木工展示9.jpg',
+(select fitment_id from tt_fitment where label = '木工展示'));
+
+INSERT INTO OWCAKE.tt_fitment (cover_url,classify,label) 
+values ('http://troytan1991.club/cmzy/site/山西创美之源水电展示.jpg',
+'4','水电展示');
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/site/山西创美之源水电展示1.jpg',
+(select fitment_id from tt_fitment where label = '水电展示'));
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/site/山西创美之源水电展示2.jpg',
+(select fitment_id from tt_fitment where label = '水电展示'));
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/site/山西创美之源水电展示3.jpg',
+(select fitment_id from tt_fitment where label = '水电展示'));
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/site/山西创美之源水电展示4.jpg',
+(select fitment_id from tt_fitment where label = '水电展示'));
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/site/山西创美之源水电展示5.jpg',
+(select fitment_id from tt_fitment where label = '水电展示'));
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/site/山西创美之源水电展示6.jpg',
+(select fitment_id from tt_fitment where label = '水电展示'));
+
+INSERT INTO OWCAKE.tt_fitment (cover_url,classify,label) 
+values ('http://troytan1991.club/cmzy/site/山西创美之源形象展示.jpg',
+'4','形象展示');
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/site/山西创美之源形象展示1.jpg',
+(select fitment_id from tt_fitment where label = '形象展示'));
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/site/山西创美之源形象展示2.jpg',
+(select fitment_id from tt_fitment where label = '形象展示'));
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/site/山西创美之源形象展示3.jpg',
+(select fitment_id from tt_fitment where label = '形象展示'));
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/site/山西创美之源形象展示4.jpg',
+(select fitment_id from tt_fitment where label = '形象展示'));
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/site/山西创美之源形象展示5.jpg',
+(select fitment_id from tt_fitment where label = '形象展示'));
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/site/山西创美之源形象展示6.jpg',
+(select fitment_id from tt_fitment where label = '形象展示'));
+
+
+INSERT INTO OWCAKE.tt_fitment (cover_url,classify,label) 
+values ('http://troytan1991.club/cmzy/style/1.jpg',
+'2','现代风格');
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/style/1.jpg',
+(select fitment_id from tt_fitment where label = '现代风格'));
+
+
+INSERT INTO OWCAKE.tt_fitment (cover_url,classify,label) 
+values ('http://troytan1991.club/cmzy/style/2.jpg',
+'2','简约风格');
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/style/2.jpg',
+(select fitment_id from tt_fitment where label = '简约风格'));
+
+INSERT INTO OWCAKE.tt_fitment (cover_url,classify,label) 
+values ('http://troytan1991.club/cmzy/style/3.jpg',
+'2','古典风格');
+INSERT INTO OWCAKE.tt_fitment_detail (img_url,fitment_id) 
+values ('http://troytan1991.club/cmzy/style/3.jpg',s
+(select fitment_id from tt_fitment where label = '古典风格'));
 
