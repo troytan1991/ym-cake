@@ -95,11 +95,12 @@
         <collection ofType="com.troytan.ymcake.domain.Work" property="workList">
 			<id column="WORK_ID" jdbcType="INTEGER" property="workId" />
             <result column="IMG_URL" jdbcType="VARCHAR" property="imgUrl" />
+            <result column="IS_COVER" jdbcType="VARCHAR" property="isCover" />
 		</collection>	 
 	</resultMap>
 		<select id="listByWork" resultMap="DesignerDtoResultMap">
 			select designer.DESIGNER_ID, designer.NAME, designer.ORDER_NUM,
-			designer.PHOTO, designer.PHOTO_DETAIL, work.img_url
+			designer.PHOTO, designer.PHOTO_DETAIL, work.work_id, work.img_url, work.is_cover 
 			from tt_designer designer
 			left join tt_work work on designer.designer_id = work.designer_id
 		</select>

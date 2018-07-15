@@ -8,6 +8,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 
@@ -36,11 +37,18 @@ public class CmzyController {
 
     @GET
     @Path("/news")
+    @NoAuth
     public List<News> searchNews(@QueryParam("searchStr") String searchStr,
                                  @DefaultValue("1") @QueryParam("pageNum") Integer pageNum,
                                  @DefaultValue("10") @QueryParam("pageSize") Integer pageSize) {
         Page<?> page = new Page<>(pageNum, pageSize);
         return cmzyService.searchNews(searchStr, page);
+    }
+    @GET
+    @Path("/news/{mediaId}")
+    @NoAuth
+    public News getNews(@PathParam("mediaId") String mediaId) {
+    	return cmzyService.getNews(mediaId);
     }
     
     @GET

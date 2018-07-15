@@ -21,5 +21,7 @@ public interface CmzyService {
 	List<FitmentDto> getFitments();
 
 	Customer createCustomers(CustomerDto customerDto);
+
+	News getNews(String mediaId);
 	
 }

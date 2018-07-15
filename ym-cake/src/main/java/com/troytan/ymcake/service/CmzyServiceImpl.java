@@ -1,6 +1,5 @@
 package com.troytan.ymcake.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.Page;
 import com.troytan.ymcake.domain.Customer;
-import com.troytan.ymcake.domain.Delivery;
 import com.troytan.ymcake.domain.News;
 import com.troytan.ymcake.domain.Worker;
 import com.troytan.ymcake.dto.CustomerDto;
@@ -19,7 +17,6 @@ import com.troytan.ymcake.repository.DesignerMapper;
 import com.troytan.ymcake.repository.FitmentMapper;
 import com.troytan.ymcake.repository.NewsMapper;
 import com.troytan.ymcake.repository.WorkerMapper;
-import com.troytan.ymcake.vo.OrderVo;
 
 @Service
 public class CmzyServiceImpl implements CmzyService {
@@ -71,6 +68,11 @@ public class CmzyServiceImpl implements CmzyService {
 		customer.setLevel(customerDto.getLevel());
 		customerMapper.insert(customer);
 		return customer;		
+	}
+
+	@Override
+	public News getNews(String mediaId) {
+		return newsMapper.selectByPrimaryKey(mediaId);
 	}
 
 }

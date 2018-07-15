@@ -16,6 +16,11 @@ wx:
   appId: wxf16b6adb67d33eee
   appSecret: ba312ecea840ec4eb46e5e5f626327c1
   oauthUrl: https://api.weixin.qq.com/sns/jscode2session
+  
+spring:
+  datasource:
+    initial-size: 5
+    max-active: 20
 
 ---
 spring:
