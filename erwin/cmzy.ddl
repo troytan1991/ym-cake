@@ -1,11 +1,24 @@
+DROP TABLE TT_FITMENT_DETAIL;
+
+DROP TABLE TT_WORK;
+
+DROP TABLE TT_CUSTOMER;
+
+DROP TABLE TT_DESIGNER;
+
+DROP TABLE TT_FITMENT;
+
+DROP TABLE TT_FITMENT_DETAIL;
+
+DROP TABLE TT_NEWS;
 
 CREATE TABLE TT_CUSTOMER
 (
 	CUSTOMER_ID          INTEGER NOT NULL AUTO_INCREMENT,
 	NAME                 VARCHAR(20) NULL,
 	PHONE                VARCHAR(20) NULL,
-	AREA                 VARCHAR(20) NULL,
 	LEVEL                VARCHAR(20) NULL,
+	AREA                 VARCHAR(20) NULL,
 	PRIMARY KEY (CUSTOMER_ID)
 );
 
@@ -38,7 +51,26 @@ CREATE TABLE TT_FITMENT_DETAIL
 	FITMENT_DETAIL_ID    INTEGER NOT NULL AUTO_INCREMENT,
 	IMG_URL              VARCHAR(200) NULL,
 	FITMENT_ID           INTEGER NOT NULL,
-	PRIMARY KEY (FIEMENT_DETAIL_ID)
+	PRIMARY KEY (FITMENT_DETAIL_ID)
+);
+
+CREATE TABLE TT_NEWS
+(
+	MEDIA_ID             VARCHAR(50) NOT NULL,
+	TITLE                VARCHAR(50) NULL,
+	DIGEST               VARCHAR(100) NULL,
+	URL                  VARCHAR(200) NULL,
+	CONTENT              TEXT NULL,
+	CREATED_ON           DATETIME NULL,
+	UPDATED_ON           DATETIME NULL,
+	TYPE                 SMALLINT NULL,
+	THUMB_URL            VARCHAR(200) NULL,
+	PRIMARY KEY (MEDIA_ID)
+);
+
+CREATE UNIQUE INDEX XPKTT_NEWS ON TT_NEWS
+(
+	MEDIA_ID ASC
 );
 
 CREATE TABLE TT_WORK
@@ -46,7 +78,7 @@ CREATE TABLE TT_WORK
 	WORK_ID              INTEGER NOT NULL AUTO_INCREMENT,
 	IMG_URL              VARCHAR(200) NULL,
 	DESIGNER_ID          INTEGER NOT NULL,
-	IS_COVER             boolean NULL,
+	IS_COVER             TINYINT NULL,
 	PRIMARY KEY (WORK_ID)
 );
 
@@ -58,18 +90,7 @@ CREATE TABLE TT_WORKER
 );
 
 ALTER TABLE TT_FITMENT_DETAIL
-ADD FOREIGN KEY R_C_2 (FITMENT_ID) REFERENCES TT_FITMENT (FITMENT_ID);
+ADD FOREIGN KEY R_2 (FITMENT_ID) REFERENCES TT_FITMENT (FITMENT_ID);
 
 ALTER TABLE TT_WORK
-ADD FOREIGN KEY R_C_1 (DESIGNER_ID) REFERENCES TT_DESIGNER (DESIGNER_ID);
-
-
-alter table owcake.tt_designer modify column photo varchar(200) comment  '头像';
-alter table owcake.tt_designer modify column description varchar(200) comment  '描述';
-alter table owcake.tt_designer modify column photo_detail varchar(200) comment  '设计师详情';
-
-alter table owcake.tt_work modify column img_url varchar(200) comment  '作品';
-alter table owcake.tt_work modify column designer_id int(11) comment  '设计师id';
-alter table owcake.tt_work modify column is_cover tinyint(1) comment  '是否封面';
-
-alter table owcake.tt_fitment modify column classify smallint(1) comment  '1工裝，2家裝，3案例 4工地';
+ADD FOREIGN KEY R_1 (DESIGNER_ID) REFERENCES TT_DESIGNER (DESIGNER_ID);
