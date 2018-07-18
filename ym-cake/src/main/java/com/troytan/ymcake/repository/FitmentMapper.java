@@ -47,4 +47,5 @@ public interface FitmentMapper {
     int updateByPrimaryKey(Fitment record);
 
 	List<FitmentDto> listByDetail();
+
 }
