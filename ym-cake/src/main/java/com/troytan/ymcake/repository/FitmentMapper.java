@@ -1,7 +1,6 @@
 package com.troytan.ymcake.repository;
 
 import com.troytan.ymcake.domain.Fitment;
-import com.troytan.ymcake.dto.DesignerDto;
 import com.troytan.ymcake.dto.FitmentDto;
 
 import java.util.List;

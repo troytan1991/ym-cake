@@ -2,7 +2,6 @@ package com.troytan.ymcake.repository;
 
 import com.troytan.ymcake.domain.Designer;
 import com.troytan.ymcake.dto.DesignerDto;
-import com.troytan.ymcake.vo.OrderVo;
 
 import java.util.List;
 
